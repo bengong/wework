@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package pfm.syslog.util;
+package wework.util;
 
 import java.security.cert.X509Certificate;
 
