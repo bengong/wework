@@ -16,6 +16,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/jstl-api-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="/tomcat/lib/servlet-api.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nutz"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/nutz.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>
