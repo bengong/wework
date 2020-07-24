@@ -3,14 +3,14 @@
 	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<display-name>BootCDN API</display-name>
+	<display-name>Wework Open API</display-name>
 
 	<filter>
 		<filter-name>nutz</filter-name>
 		<filter-class>org.nutz.mvc.NutFilter</filter-class>
 		<init-param>
 			<param-name>modules</param-name>
-			<param-value>x.bootcdn.MainModule</param-value>
+			<param-value>wework.MainModule</param-value>
 		</init-param>
 		<init-param>
 			<param-name>exclusions</param-name>
