@@ -31,7 +31,7 @@ public class CorpService  extends Service {
 		
 		long now = System.currentTimeMillis();
 		// 如果超时，则重新获取。
-		if(application.access_time+application.expires_in- 10*1000 >= now) {
+		if(application.access_token == null || (application.access_time > 0 && application.access_time+application.expires_in- 10*1000 >= now)) {
 			Token token = gettoken(corp.corpid, application.secret);			
 			now = System.currentTimeMillis();
 			if(token != null) {

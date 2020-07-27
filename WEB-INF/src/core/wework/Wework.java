@@ -49,14 +49,14 @@ public class Wework {
     }
     
     public static <T> T as(Class<T> type, Response response) {
-    	Mapl data = as(response);
+    	Object data = as(response);
     	
     	return (T)Mapl.maplistToObj(data, type);
     }
     
-    public static Mapl as(Response response) {
+    public static Object as(Response response) {
     	String content = response.getContent();
-    	Mapl data = (Mapl)Mapl.toMaplist(content);
+    	Object data = Json.fromJson(content);
     	if(data != null) {
     		Integer errcode =  (Integer)Mapl.cell(data, "errcode");
     		String errmsg =  (String)Mapl.cell(data, "errmsg");

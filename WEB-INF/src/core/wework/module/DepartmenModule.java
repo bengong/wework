@@ -3,6 +3,7 @@ package wework.module;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.nutz.http.Response;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mapl.Mapl;
@@ -39,6 +40,8 @@ public class DepartmenModule {
 	
 	@At({"/list", "/list/?"})
 	public Object list(String id) {
-		return departmentService.list(corpService.token(agentid), id);
+		Response response =  departmentService.list(corpService.token(agentid), id);
+		
+		return response;
 	}
 }
