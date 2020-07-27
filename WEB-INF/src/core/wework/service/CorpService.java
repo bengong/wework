@@ -4,13 +4,13 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.mapl.Mapl;
 import org.nutz.service.Service;
 
 import wework.WeException;
 import wework.Wework;
-import wework.domain.Application;
+import wework.domain.Agent;
 import wework.domain.Corp;
-import wework.domain.Token;
 
 @IocBean
 public class CorpService  extends Service {	
@@ -24,24 +24,24 @@ public class CorpService  extends Service {
 	}
 
 	public String token(String agentid) {
-		Application application = corp.applications.get(agentid);
-		if(application == null) {
+		Agent agent = corp.agents.get(agentid);
+		if(agent == null) {
 			throw new WeException(String.format("%s 对应的应用不存在", agentid));
 		}
 		
 		long now = System.currentTimeMillis();
 		// 如果超时，则重新获取。
-		if(application.access_token == null || (application.access_time > 0 && application.access_time+application.expires_in- 10*1000 >= now)) {
-			Token token = gettoken(corp.corpid, application.secret);			
+		if(agent.access_token == null || (agent.access_time > 0 && now-agent.access_time >= agent.expires_in- 10*1000)) {
+			Object result = gettoken(corp.corpid, agent.secret);			
 			now = System.currentTimeMillis();
-			if(token != null) {
-				application.access_time = now;
-				application.access_token = token.access_token;
-				application.expires_in = token.expires_in;
+			if(result != null) {
+				agent.access_time = now;
+				agent.access_token = (String)Mapl.cell(result, "access_token");
+				agent.expires_in = (Integer)Mapl.cell(result, "expires_in");
 			}
 		}
 		
-		return application.access_token;
+		return agent.access_token;
 	}
 	
 	/**
@@ -52,11 +52,11 @@ public class CorpService  extends Service {
 	 * 
 	 * @param corpid 公司标识 企业ID，获取方式参考：术语说明-corpid
 	 * @param corpsecret  应用的凭证密钥，获取方式参考：术语说明-secret
-	 * @return
+	 * @return token
 	 */
-	private Token gettoken(String corpid, String secret) {		
+	private Object gettoken(String corpid, String secret) {		
 		String url = Wework.server_url+"/gettoken?corpid=%s&corpsecret=%s";
 		
-		return Wework.as(Token.class, Wework.get(String.format(url, corpid, secret)));
+		return Wework.get(String.format(url, corpid, secret));
 	}
 }

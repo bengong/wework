@@ -8,6 +8,8 @@ import org.nutz.http.Request.METHOD;
 import org.nutz.http.Response;
 import org.nutz.http.Sender;
 import org.nutz.json.Json;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
 import wework.domain.Corp;
@@ -20,17 +22,24 @@ public class Wework {
 	
 	public Corp corp;
 	
-	public static int Default_timeout = 30*1000;
+	private static Log log = Logs.get();
 	
-	public static Response get(String url) {
-        return Http.get(url, Default_timeout);
+	public static int Default_timeout = 60*1000;
+	
+	public static Object get(String url) {
+		log.info(url);
+		
+		Response response = Http.get(url, Default_timeout);
+		return as(response);
     }
 	
-	public static Response get(String url, Map<String, Object> params) {
-        return Http.get(url, params, Default_timeout);
+	public static Object get(String url, Map<String, Object> params) {
+		Response response = Http.get(url, params, Default_timeout);
+		return as(response);
     }
 	
-	public static Response postJson(String url, Mapl data) {
+	public static Object postJson(String url, Object data) {
+		
         return postJson(url, data, Default_timeout);
     }
 	
@@ -41,13 +50,20 @@ public class Wework {
 	 * @param timeout
 	 * @return
 	 */
-    public static Response postJson(String url, Mapl data, int timeout) {
+    public static Object postJson(String url, Object data, int timeout) {
+        String json = Json.toJson(data);
+        log.info(url);
+        log.info(json);
+        
         Request req = Request.create(url, METHOD.POST);
-        req.setData(Json.toJson(data));
+        req.setData(json);
+        
         req.getHeader().set("Content-Type", "application/json");
-        return Sender.create(req).setTimeout(timeout).send();
+        Response response = Sender.create(req).setTimeout(timeout).send();
+        
+        return as(response);
     }
-    
+
     public static <T> T as(Class<T> type, Response response) {
     	Object data = as(response);
     	

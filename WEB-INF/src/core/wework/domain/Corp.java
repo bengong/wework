@@ -6,5 +6,5 @@ import java.util.Map;
 public class Corp {
 	public String corpid;	
 	/** 其他应用 */
-	public Map<String, Application> applications = new HashMap<String, Application>();
+	public Map<String, Agent> agents = new HashMap<String, Agent>();
 }

@@ -1,6 +1,7 @@
 package wework.service;
 
-import org.nutz.http.Response;
+import java.util.List;
+
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
@@ -18,24 +19,55 @@ public class DepartmentService  extends Service {
 		super();
 	}
 	
-	
-	public Integer create(String access_token, Mapl data) {		
-		String url = Wework.server_url+"/department/create?access_token=%s";
-		
-		Object result = Wework.as(Wework.postJson(String.format(url, access_token), data));
-		
-		return (Integer)Mapl.cell(result, "id");
-	}
-	
 	/**
+	 * 創建部門。
 	 * 
 	 * @param access_token
 	 * @param data
 	 * @return
 	 */
-	public Response list(String access_token, String id) {		
-		String url = Wework.server_url+"department/list?access_token=%s&id=%s";
+	public Integer create(String access_token, Object data) {		
+		String url = String.format(Wework.server_url+"/department/create?access_token=%s", access_token);	
+		Object result = Wework.postJson(url, data);	
 		
-		return Wework.get(String.format(url, access_token, id));
+		return (Integer)Mapl.cell(result, "id");
+	}
+	
+	/**
+	 * 修改部門。
+	 * 
+	 * @param access_token
+	 * @param data
+	 */
+	public Object update(String access_token, Object data) {		
+		String url = String.format(Wework.server_url+"/department/update?access_token=%s", access_token);
+		
+		return Wework.postJson(url, data);
+	}
+	
+	/**
+	 * 刪除部門。
+	 * 
+	 * @param access_token
+	 * @param id
+	 */
+	public Object delete(String access_token, String id) {		
+		String url = String.format(Wework.server_url+"/department/delete?access_token=%s&id=%s", access_token, id);		
+		return Wework.get(url);
+	}
+	
+	/**
+	 * 獲取部門清單。
+	 * 
+	 * @param access_token
+	 * @param data
+	 * @return
+	 */
+	public List list(String access_token, String id) {		
+		String url =  String.format(Wework.server_url+"/department/list?access_token=%s&id=%s", access_token, id);
+		Object result = Wework.get(url);
+		
+		List departments = (List)Mapl.cell(result, "department");
+		return departments;
 	}
 }

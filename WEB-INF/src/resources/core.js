@@ -5,15 +5,15 @@ var ioc = {
 	        singleton : true, // 是否为单例
 	        fields : {
 	        	   corpid: 'wwea1a491e1639ecd6',
-	        	   applications: {
+	        	   agents: {
 	        		   contacts: {refer :"contacts"} ,
-					  agentId_100000X: {refer :"contacts"},
+	        		   agent_1000002: {refer :"agent_1000002"},
 	        	   }
 	        }
 	    },
 	    // 通讯录
 	    contacts : {
-	    	 type : 'wework.domain.Application', // 类型
+	    	 type : 'wework.domain.Agent', // 类型
 		     singleton : true, // 是否为单例
 		     fields : {
     	         agentId: 'contacts',
@@ -21,8 +21,8 @@ var ioc = {
 	        }
 	    },
 	    // 其他自定义应用。
-	    app_1000002 : {
-	    	type : 'wework.domain.Application', // 类型
+	    agent_1000002 : {
+	    	type : 'wework.domain.Agent', // 类型
 		     singleton : true, // 是否为单例
 		     fields : {
    	         agentId: '1000002',

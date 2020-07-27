@@ -9,15 +9,15 @@ public class CorpTest {
 		Corp data  = new Corp();
 		data.corpid = "wwea1a49XXXXXXXXXX";
 		
-		Application application = new Application();
-		application.agentId = "100000X";
-		application.secret = "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacXXXX";
-		data.applications.put(application.agentId, application);
+		Agent agent = new Agent();
+		agent.agentId = "100000X";
+		agent.secret = "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacXXXX";
+		data.agents.put(agent.agentId, agent);
 		
-		application = new Application();
-		application.agentId = "contacts";
-		application.secret = "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacYYYY";
-		data.applications.put(application.agentId, application);
+		agent = new Agent();
+		agent.agentId = "contacts";
+		agent.secret = "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacYYYY";
+		data.agents.put(agent.agentId, agent);
 		
 		Json.toJsonFile(Files.createFileIfNoExists2("corp-test.json"), data);
 	}

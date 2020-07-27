@@ -3,7 +3,7 @@ package wework.domain;
 /**
  * 应用。
  */
-public class Application {
+public class Agent {
 	
 	public String agentId;
 	public String secret;
@@ -11,13 +11,13 @@ public class Application {
 	public String corpid;
 	
 	public String access_token;
-	public long expires_in;
-	public long access_time;
+	public Integer expires_in;
+	public Long access_time;
 	
-	public Application() {
+	public Agent() {
 	}
 	
-	public Application(String agentId, String secret) {
+	public Agent(String agentId, String secret) {
 		this.agentId = agentId;
 		this.secret = secret;
 	}
