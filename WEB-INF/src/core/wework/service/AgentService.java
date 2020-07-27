@@ -2,25 +2,33 @@ package wework.service;
 
 import wework.Wework;
 
+/**
+ * 应用管理。
+ */
 public class AgentService {
 
-	public Object get_user_behavior_data(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/get_user_behavior_data?access_token=%s", access_token);
+	/**
+	 * 获取指定的应用详情
+	 * 
+	 * @param access_token 调用接口凭证
+	 * @param agentid 应用id
+	 * @return
+	 */
+	public Object get(String access_token, String agentid) {		
+		String url =  String.format(Wework.server_url+"/agent/get?access_token=%s&agentid=%s", access_token, agentid);
+	
+		return Wework.get(url);
+	}
+	
+	/**
+	 * 获取access_token对应的应用列表
+	 * 
+	 * @param access_token 调用接口凭证
+	 * @return agentlist
+	 */
+	public Object list(String access_token) {		
+		String url =  String.format(Wework.server_url+"/agent/list?access_token=%s", access_token);
 		
-//		{
-//		    "userid": [
-//		        "zhangsan",
-//		        "lisi"
-//		    ],
-//		    "partyid":
-//		    [
-//		        1001,
-//		        1002
-//		    ],
-//		    "start_time":1536508800,
-//		    "end_time":1536940800
-//		}
-		
-		return Wework.postJson(url, data);
+		return Wework.get(url);
 	}
 }
