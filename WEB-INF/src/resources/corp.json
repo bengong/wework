@@ -1,0 +1,17 @@
+{
+   "corpid": "wwea1a49XXXXXXXXXX",
+   "applications": {
+      "100000X": {
+         "agentId": "100000X",
+         "secret": "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacXXXX",
+         "expires_in": 0,
+         "access_time": 0
+      },
+      "contacts": {
+         "agentId": "contacts",
+         "secret": "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacYYYY",
+         "expires_in": 0,
+         "access_time": 0
+      }
+   }
+}

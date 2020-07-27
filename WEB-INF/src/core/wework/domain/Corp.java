@@ -1,12 +1,10 @@
 package wework.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Corp {
-	
 	public String corpid;	
-	
-	public List<Application> applications = new ArrayList<Application>();
-	
+	/** 其他应用 */
+	public Map<String, Application> applications = new HashMap<String, Application>();
 }

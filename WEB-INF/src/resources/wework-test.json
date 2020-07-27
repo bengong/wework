@@ -1,0 +1,11 @@
+{
+   "corps": {
+      "default": {
+         "corpid": "wwea1a49XXXXXXXXXX",
+         "applications": [{
+            "agentId": "100000X",
+            "secret": "qAXEXCFZEXXXXX-HwcO-QsBAgtXX4O3-dmFdQacXXXX"
+         }]
+      }
+   }
+}

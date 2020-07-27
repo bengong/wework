@@ -7,9 +7,8 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.service.Service;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.HeaderTokenizer.Token;
-
 import wework.Wework;
+import wework.domain.Token;
 
 @IocBean
 public class TokenService  extends Service {	
