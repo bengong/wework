@@ -17,11 +17,24 @@ public class AgentModule {
 	@Inject
 	AgentService agentService;
 	
+	/**
+	 * 获取指定的应用详情
+	 * 
+	 * @param access_token 调用接口凭证
+	 * @param agentid 应用id
+	 * @return
+	 */
 	@At("/get/?/?")
 	public Object get(String access_token, String agentid) {	
 		return agentService.get(access_token, agentid);
 	}
 	
+	/**
+	 * 获取access_token对应的应用列表
+	 * 
+	 * @param access_token 调用接口凭证
+	 * @return
+	 */
 	@At("/list/?")
 	public Object list(String access_token) {
 		return agentService.list(access_token);

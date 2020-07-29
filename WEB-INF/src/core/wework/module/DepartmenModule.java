@@ -15,11 +15,15 @@ import org.nutz.mvc.annotation.At;
 import wework.service.CorpService;
 import wework.service.DepartmentService;
 
+/**
+ * 部门。
+ *
+ */
 @IocBean
 @At("department")
 public class DepartmenModule {
 	
-	String agentid = "contacts";
+	String agentid = "contacts";// 通讯录
 	
 	@Inject
 	CorpService corpService;	
@@ -29,6 +33,10 @@ public class DepartmenModule {
 	
 	Log log = Logs.get();
 	
+	/**
+	 * 创建部门。
+	 * @return
+	 */
 	@At({"/create"})
 	public Object create() {		
 		NutMap data = new NutMap();		

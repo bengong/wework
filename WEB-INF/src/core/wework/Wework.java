@@ -1,7 +1,9 @@
 package wework;
 
+import java.io.InputStream;
 import java.util.Map;
 
+import org.nutz.http.Header;
 import org.nutz.http.Http;
 import org.nutz.http.Request;
 import org.nutz.http.Request.METHOD;
@@ -52,6 +54,7 @@ public class Wework {
 	 */
     public static Object postJson(String url, Object data, int timeout) {
         String json = Json.toJson(data);
+        
         log.info(url);
         log.info(json);
         
@@ -72,6 +75,10 @@ public class Wework {
     
     public static Object as(Response response) {
     	String content = response.getContent();
+    	
+    	log.info(Json.toJson(response));
+    	log.info(Json.toJson(content));
+    	
     	Object data = Json.fromJson(content);
     	if(data != null) {
     		Integer errcode =  (Integer)Mapl.cell(data, "errcode");
@@ -82,5 +89,22 @@ public class Wework {
     	}
     	
     	return data;
+    }
+    
+    /**
+     * 上传文件。
+     * 
+     * @param url
+     * @param params
+     * @param header
+     * @return
+     */
+    public static Object upload(String url, Map<String, Object> params, Header header) {
+    	Response response = Http.upload(url, params, header, Default_timeout);
+    	return as(response);
+    }
+    
+    public static InputStream download(String url) {
+    	return Http.get(url, Default_timeout).getStream();
     }
 }

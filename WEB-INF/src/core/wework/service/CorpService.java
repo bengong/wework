@@ -23,8 +23,13 @@ public class CorpService  extends Service {
 		super();
 	}
 
+	/**
+	 * 
+	 * @param agentid 
+	 * @return
+	 */
 	public String token(String agentid) {
-		Agent agent = corp.agents.get(agentid);
+		Agent agent = corp.agents.get("agent_"+agentid);
 		if(agent == null) {
 			throw new WeException(String.format("%s 对应的应用不存在", agentid));
 		}

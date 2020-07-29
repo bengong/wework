@@ -6,13 +6,13 @@ var ioc = {
 	        fields : {
 	        	   corpid: 'wwea1a491e1639ecd6',
 	        	   agents: {
-	        		   contacts: {refer :"contacts"} ,
+	        		   contacts: {refer :"agent_contacts"} ,
 	        		   agent_1000002: {refer :"agent_1000002"},
 	        	   }
 	        }
 	    },
 	    // 通讯录
-	    contacts : {
+	    agent_contacts : {
 	    	 type : 'wework.domain.Agent', // 类型
 		     singleton : true, // 是否为单例
 		     fields : {
