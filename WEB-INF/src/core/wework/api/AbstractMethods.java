@@ -9,14 +9,17 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
+import wework.WeConfig;
 import wework.WeException;
-import wework.Wework;
 
 public abstract class AbstractMethods {
-	
 	@Inject
-	protected Wework wework;
+	protected WeConfig weConfig;
 
+	protected String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
+	
+	protected int Default_timeout = 60*1000;
+	
 	protected String agentid;// 通讯录
 	
 	protected Log log = Logs.get();
@@ -28,35 +31,77 @@ public abstract class AbstractMethods {
 		this.agentid = agentid;
 	}
 	
-	protected Object get(String url) {
-		return wework.get(url);
-	}
+	/**
+	 * GET
+	 * 
+	 * @param url
+	 * @return
+	 */
+	public abstract Object get(String url);
 	
-	protected Object get(String url, Map<String, Object> params) {
-		return wework.get(url, params);
-	}
+	/**
+	 * GET
+	 * 
+	 * @param url
+	 * @param params
+	 * @return
+	 */
+	public abstract Object get(String url, Map<String, Object> params);
 	
-	protected Object post(String url, Object data) {
-		return wework.post(url, data);
-	}
+	/**
+	 * POST。
+	 * 
+	 * @param url
+	 * @param data
+	 * @return
+	 */
+	public abstract Object post(String url, Object data);
 	
 	/**
 	 * 将数据对象转换成json后，post出去。
+	 * 
 	 * @param url
 	 * @param data
 	 * @param timeout
 	 * @return
 	 */
-	protected Object post(String url, Object data, int timeout) {
-    	return wework.post(url, data, timeout);
-    }
-
-	protected Object upload(String url, Map<String, Object> params, Header header) {
-    	return wework.upload(url, params, header);
+    public abstract Object post(String url, Object data, int timeout);
+    
+    /**
+     * 上传文件。
+     * 
+     * @param url
+     * @param params
+     * @param header
+     * @return
+     */
+    public abstract Object upload(String url, Map<String, Object> params, Header header);
+    
+    /**
+     * 下载。
+     * 
+     * @param url
+     * @return
+     */
+    public abstract InputStream download(String url);
+    
+    /**
+     * 获取公司主键。
+     * 
+     * @return corpid
+     */
+    public String corpid() {
+    	return weConfig.corpid;
     }
     
-	protected InputStream download(String url) {
-    	return wework.download(url);
+    /**
+     * 获取应用。
+     * 
+     * @param agentid
+     * @return agent
+     */
+    public Object agent(String agentid) {
+    	return weConfig.agents.get(agentid);
     }
 	
 	public String gettoken() {
@@ -84,7 +129,7 @@ public abstract class AbstractMethods {
 		long now = System.currentTimeMillis();
 		// 如果超时，则重新获取。
 		if(access_token == null || (access_time > 0 && now-access_time >= expires_in- 10*1000)) {
-			Object result = gettoken(wework.corpid(), secret);			
+			Object result = gettoken(corpid(), secret);			
 			now = System.currentTimeMillis();
 			if(result != null) {
 				access_time = now;
@@ -112,9 +157,5 @@ public abstract class AbstractMethods {
 	 */
 	protected Object gettoken(String corpid, String secret) {
 		return get(String.format("/gettoken?corpid=%s&corpsecret=%s", corpid, secret));
-	}
-	
-	protected Object agent(String agentid) {
-		return wework.agent(agentid);
-	}
+	}	
 }

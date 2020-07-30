@@ -1,7 +1,6 @@
-package wework;
+package wework.api;
 
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.nutz.http.Header;
@@ -11,34 +10,19 @@ import org.nutz.http.Request.METHOD;
 import org.nutz.http.Response;
 import org.nutz.http.Sender;
 import org.nutz.json.Json;
-import org.nutz.log.Log;
-import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
-/**
- * 缺省企业微信对象。
- */
-public class NutzWeworkImpl implements Wework {	
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -9220340149800920348L;
+import wework.WeException;
 
-	/**
-	 * 公司标识。
-	 */
-	protected String corpid;	
-	/**
-	 * 其他应用。
-	 */
-	protected Map<String, Object> agents = new HashMap<String, Object>();
-
-	protected String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
+public class NutzMethods extends AbstractMethods {
 	
-	protected int Default_timeout = 60*1000;
+	public NutzMethods() {
+		super();
+	}
 	
-	protected Log log = Logs.get();
-	
+	public NutzMethods(String agentid) {
+		super(agentid);
+	}
 	public Object get(String url) {
 		log.info(url);		
 		return result(Http.get(server_url+url, Default_timeout));
@@ -118,15 +102,4 @@ public class NutzWeworkImpl implements Wework {
     	
     	return result;
     }
-
-	@Override
-	public String corpid() {
-		return this.corpid;
-	}
-
-	@Override
-	public Object agent(String agentid) {
-		return this.agents.get(agentid);
-	}
-
 }

@@ -6,7 +6,16 @@ import org.nutz.ioc.loader.annotation.IocBean;
  * 打卡管理。
  */
 @IocBean
-public class CheckinMethods extends AbstractMethods {
+public class CheckinMethods extends NutzMethods {
+	
+	public CheckinMethods() {
+		super();
+	}
+
+	public CheckinMethods(String agentid) {
+		super(agentid);
+	}
+
 	/**
 	 * 获取打卡数据
 	 * 

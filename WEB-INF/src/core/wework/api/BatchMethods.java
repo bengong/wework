@@ -11,8 +11,16 @@ import org.nutz.mapl.Mapl;
  * 目前，仅为通讯录更新提供了异步批量接口</p>
  */
 @IocBean
-public class BatchMethods extends AbstractMethods {
+public class BatchMethods extends NutzMethods {
 	
+	public BatchMethods() {
+		super();
+	}
+
+	public BatchMethods(String agentid) {
+		super(agentid);
+	}
+
 	/**
 	 * 增量更新成员
 	 * 

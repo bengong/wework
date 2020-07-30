@@ -8,12 +8,16 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
 /**
- * 成員服務。
+ * 
  */
 @IocBean
-public class TagMethods extends AbstractMethods {
+public class TagMethods extends NutzMethods {
 	
 	Log log = Logs.get();
+
+	public TagMethods(String agentid) {
+		super(agentid);
+	}
 
 	public TagMethods() {
 		super();

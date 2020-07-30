@@ -6,7 +6,15 @@ import org.nutz.ioc.loader.annotation.IocBean;
  * 应用管理。
  */
 @IocBean
-public class ApprovalMethods extends AbstractMethods {
+public class ApprovalMethods extends NutzMethods {
+
+	public ApprovalMethods() {
+		super();
+	}
+
+	public ApprovalMethods(String agentid) {
+		super(agentid);
+	}
 
 	/**
 	 * 获取审批模板详情

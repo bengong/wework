@@ -6,7 +6,15 @@ import org.nutz.ioc.loader.annotation.IocBean;
  * 审批。
  */
 @IocBean
-public class AgentMethods extends AbstractMethods {
+public class AgentMethods extends NutzMethods {
+
+	public AgentMethods() {
+		super();
+	}
+
+	public AgentMethods(String agentid) {
+		super(agentid);
+	}
 
 	/**
 	 * 获取指定的应用详情

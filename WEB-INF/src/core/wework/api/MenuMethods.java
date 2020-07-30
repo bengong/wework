@@ -6,8 +6,16 @@ import org.nutz.ioc.loader.annotation.IocBean;
  * 自定義菜單管理。
  */
 @IocBean
-public class MenuMethods extends AbstractMethods {
+public class MenuMethods extends NutzMethods {
 	
+	public MenuMethods() {
+		super();
+	}
+
+	public MenuMethods(String agentid) {
+		super(agentid);
+	}
+
 	/**
 	 * 
 	 * @param agentid

@@ -10,8 +10,16 @@ import org.nutz.ioc.loader.annotation.IocBean;
  * 素材管理。
  */
 @IocBean
-public class MediaMethods extends AbstractMethods {	
+public class MediaMethods extends NutzMethods {	
 	
+	public MediaMethods() {
+		super();
+	}
+
+	public MediaMethods(String agentid) {
+		super(agentid);
+	}
+
 	/**
 	 * <p>上传临时素材。</p>
 	 * 

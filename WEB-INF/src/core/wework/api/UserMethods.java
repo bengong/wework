@@ -9,8 +9,16 @@ import org.nutz.mapl.Mapl;
  * 成員服務。
  */
 @IocBean
-public class UserMethods  extends AbstractMethods {
+public class UserMethods  extends NutzMethods {
 	
+	public UserMethods() {
+		super();
+	}
+
+	public UserMethods(String agentid) {
+		super(agentid);
+	}
+
 	/**
 	 * 創建。
 	 * 

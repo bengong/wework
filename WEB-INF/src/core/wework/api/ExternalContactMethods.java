@@ -10,8 +10,18 @@ import org.nutz.mapl.Mapl;
  *
  */
 @IocBean
-public class ExternalContactMethods  extends AbstractMethods {
+public class ExternalContactMethods  extends NutzMethods {
 	
+	public ExternalContactMethods() {
+		super();
+	}
+
+
+	public ExternalContactMethods(String agentid) {
+		super(agentid);
+	}
+
+
 	public Object remark(Object data) {
 //		{
 //			   "userid":"zhangsan",

@@ -3,8 +3,16 @@ package wework.api;
 import org.nutz.ioc.loader.annotation.IocBean;
 
 @IocBean
-public class SuiteMethods extends AbstractMethods {
+public class SuiteMethods extends NutzMethods {
 	
+	public SuiteMethods() {
+		super();
+	}
+
+	public SuiteMethods(String agentid) {
+		super(agentid);
+	}
+
 	/**
 	 * 新增成员事件
 	 * 
