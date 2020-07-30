@@ -1,24 +1,19 @@
-package wework.service;
+package wework.api;
 
 import java.util.List;
 
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.log.Log;
-import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
-import org.nutz.service.Service;
 
-import wework.Wework;
+import wework.AbstractMethods;
 
 /**
  * 成員服務。
  */
 @IocBean
-public class UserService  extends Service {	
-	
-	Log log = Logs.get();
+public class UserMethods  extends AbstractMethods {
 
-	public UserService() {
+	public UserMethods() {
 		super();
 	}
 	
@@ -30,8 +25,8 @@ public class UserService  extends Service {
 	 * @return
 	 */
 	public Integer create(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/user/create?access_token=%s", access_token);	
-		Object result = Wework.postJson(url, data);		
+		String url = String.format("/user/create?access_token=%s", access_token);	
+		Object result = postJson(url, data);		
 		return (Integer)Mapl.cell(result, "id");
 	}
 	
@@ -42,9 +37,9 @@ public class UserService  extends Service {
 	 * @param data
 	 */
 	public Object update(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/user/update?access_token=%s", access_token);
+		String url = String.format("/user/update?access_token=%s", access_token);
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -54,8 +49,8 @@ public class UserService  extends Service {
 	 * @param userid
 	 */
 	public Object delete(String access_token, String userid) {		
-		String url = String.format(Wework.server_url+"/user/delete?access_token=%s&userid=%s", access_token, userid);		
-		return Wework.get(url);
+		String url = String.format("/user/delete?access_token=%s&userid=%s", access_token, userid);		
+		return get(url);
 	}
 	
 	/**
@@ -66,9 +61,8 @@ public class UserService  extends Service {
 	 * @return
 	 */
 	public Object batchdelete(String access_token, Object useridlist) {		
-		String url = String.format(Wework.server_url+"/user/batchdelete?access_token=%s&id=%s", access_token);		
-		
-		return Wework.postJson(url, useridlist);
+		String url = String.format("/user/batchdelete?access_token=%s&id=%s", access_token);			
+		return postJson(url, useridlist);
 	}
 	
 	/**
@@ -79,8 +73,8 @@ public class UserService  extends Service {
 	 * @return
 	 */
 	public Object get(String access_token, String userid) {		
-		String url =  String.format(Wework.server_url+"/user/get?access_token=%s&userid=%s", access_token, userid);
-		return Wework.get(url);
+		String url =  String.format("/user/get?access_token=%s&userid=%s", access_token, userid);
+		return get(url);
 	}
 	
 	/**
@@ -92,8 +86,8 @@ public class UserService  extends Service {
 	 * @return userlist
 	 */
 	public List simplelist(String access_token, String department_id, String fetch_child) {		
-		String url =  String.format(Wework.server_url+"/user/list?access_token=%s&department_id=%s&fetch_child=%s", access_token, department_id, fetch_child);
-		Object result = Wework.get(url);
+		String url =  String.format("/user/list?access_token=%s&department_id=%s&fetch_child=%s", access_token, department_id, fetch_child);
+		Object result = get(url);
 		
 		List userlist = (List)Mapl.cell(result, "userlist");
 		return userlist;
@@ -108,8 +102,8 @@ public class UserService  extends Service {
 	 * @return userlist
 	 */
 	public List list(String access_token, String department_id, String fetch_child) {		
-		String url =  String.format(Wework.server_url+"/user/list?access_token=%s&department_id=%s&fetch_child=%s", access_token, department_id, fetch_child);
-		Object result = Wework.get(url);
+		String url =  String.format("/user/list?access_token=%s&department_id=%s&fetch_child=%s", access_token, department_id, fetch_child);
+		Object result = get(url);
 		List departments = (List)Mapl.cell(result, "department");
 		return departments;
 	}

@@ -1,4 +1,4 @@
-package wework.service;
+package wework.api;
 
 import java.io.InputStream;
 import java.util.Map;
@@ -6,14 +6,14 @@ import java.util.Map;
 import org.nutz.http.Header;
 import org.nutz.ioc.loader.annotation.IocBean;
 
-import wework.Wework;
+import wework.AbstractMethods;
 
 /**
  * 素材管理。
  */
 @IocBean
-public class MediaService {
-
+public class MediaMethods extends AbstractMethods {
+	
 	/**
 	 * <p>上传临时素材。</p>
 	 * 
@@ -39,8 +39,8 @@ public class MediaService {
 	 */
 	public Object upload(String access_token, String type, Map<String, Object> data) {		
 		// type 媒体文件类型，分别有图片（image）、语音（voice）、视频（video），普通文件（file）
-		String url =  String.format(Wework.server_url+"/media/upload?access_token=%s&type=%s", access_token, type);
-		return Wework.upload(url, data, Header.create());
+		String url =  String.format("/media/upload?access_token=%s&type=%s", access_token, type);
+		return upload(url, data, Header.create());
 	}
 	
 	/**
@@ -51,8 +51,8 @@ public class MediaService {
 	 * @return
 	 */
 	public Object uploadimg(String access_token, Map<String, Object> data) {
-		String url =  String.format(Wework.server_url+"/media/upload?uploadimg=%s", access_token);		
-		return Wework.upload(url, data, Header.create());
+		String url =  String.format("/media/upload?uploadimg=%s", access_token);		
+		return upload(url, data, Header.create());
 	}
 	
 	/**
@@ -65,8 +65,8 @@ public class MediaService {
 	 * @return
 	 */
 	public InputStream download(String access_token, String media_id) {
-		String url =  String.format(Wework.server_url+"/media/get?access_token=%s&media_id=%s", access_token, media_id);		
-		return Wework.download(url);
+		String url =  String.format("/media/get?access_token=%s&media_id=%s", access_token, media_id);		
+		return download(url);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class MediaService {
 	 * @return
 	 */
 	public Object downloadVoice(String access_token, String media_id) {
-		String url =  String.format(Wework.server_url+"/media/get/jssdk?access_token=%s&media_id=%s", access_token, media_id);		
-		return Wework.download(url);
+		String url =  String.format("/media/get/jssdk?access_token=%s&media_id=%s", access_token, media_id);		
+		return download(url);
 	}
 }

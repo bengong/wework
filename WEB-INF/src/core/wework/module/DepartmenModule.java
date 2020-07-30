@@ -12,8 +12,8 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.service.CorpService;
-import wework.service.DepartmentService;
+import wework.api.CorpMethods;
+import wework.api.DepartmentMethods;
 
 /**
  * 部门。
@@ -26,10 +26,10 @@ public class DepartmenModule {
 	String agentid = "contacts";// 通讯录
 	
 	@Inject
-	CorpService corpService;	
+	CorpMethods corpMethods;	
 	
 	@Inject
-	DepartmentService departmentService;
+	DepartmentMethods departmentMethods;
 	
 	Log log = Logs.get();
 	
@@ -45,7 +45,7 @@ public class DepartmenModule {
 		Mapl.put(data, "name_en", "RDGZ");
 		Mapl.put(data, "parentid", "1");
 		
-		return departmentService.create(corpService.token(agentid), data);
+		return departmentMethods.create(corpMethods.token(agentid), data);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class DepartmenModule {
 		// Mapl.put(data, "parentid", "");
 		Mapl.put(data, "order", "100000000");
 		
-		return departmentService.update(corpService.token(agentid), data);
+		return departmentMethods.update(corpMethods.token(agentid), data);
 	}
 	
 	/**
@@ -73,13 +73,13 @@ public class DepartmenModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String id) {	
-		return departmentService.delete(corpService.token(agentid), id);
+		return departmentMethods.delete(corpMethods.token(agentid), id);
 	}
 	
 	@At({"/list", "/list/?"})
 	public List list(String id) {
 		if(id == null) id = "";
-		List result =  departmentService.list(corpService.token(agentid), id);
+		List result =  departmentMethods.list(corpMethods.token(agentid), id);
 		
 		return result;
 	}

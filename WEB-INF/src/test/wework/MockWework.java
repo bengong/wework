@@ -1,5 +1,5 @@
 package wework;
 
-public class MockWework extends Wework {
-
+public interface MockWework extends Wework {
+	public void setMock_file(String mock_file);
 }

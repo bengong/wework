@@ -1,11 +1,14 @@
-package wework.service;
+package wework.api;
 
-import wework.Wework;
+import org.nutz.ioc.loader.annotation.IocBean;
+
+import wework.AbstractMethods;
 
 /**
  * 应用管理。
  */
-public class ApprovalService {
+@IocBean
+public class ApprovalMethods extends AbstractMethods {
 
 	/**
 	 * 获取审批模板详情
@@ -17,7 +20,7 @@ public class ApprovalService {
 	 * @return
 	 */
 	public Object gettemplatedetail(String access_token, Object data) {
-		String url =  String.format(Wework.server_url+"/oa/gettemplatedetail?access_token=%s", access_token);
+		String url =  String.format("/oa/gettemplatedetail?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -25,7 +28,7 @@ public class ApprovalService {
 //		   "template_id" : "ZLqk8pcsAoXZ1eYa6vpAgfX28MPdYU3ayMaSPHaaa" 
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -33,12 +36,12 @@ public class ApprovalService {
 	 * 
 	 * 企业可通过审批应用或自建应用Secret调用本接口，代应用可见范围内员工在企业微信“审批应用”内提交指定类型的审批申请。
 	 * 
-	 * @param access_token
+	 * @param access_token 调用接口凭证
 	 * @param data
 	 * @return
 	 */
 	public Object applyevent(String access_token, Object data) {
-		String url =  String.format(Wework.server_url+"/oa/applyevent?access_token=%s", access_token);
+		String url =  String.format("/oa/applyevent?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -90,7 +93,7 @@ public class ApprovalService {
 //		    ]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -101,12 +104,12 @@ public class ApprovalService {
 	 * 
 	 * <p>一次拉取调用最多拉取100个审批记录，可以通过多次拉取的方式来满足需求，但调用频率不可超过600次/分。</p>
 	 * 
-	 * @param access_token
+	 * @param access_token 调用接口凭证
 	 * @param data
 	 * @return
 	 */
 	public Object getapprovalinfo(String access_token, Object data) {
-		String url =  String.format(Wework.server_url+"/oa/getapprovalinfo?access_token=%s", access_token);
+		String url =  String.format("/oa/getapprovalinfo?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -134,7 +137,7 @@ public class ApprovalService {
 //		    ]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -144,18 +147,18 @@ public class ApprovalService {
 	 * 
 	 * 接口频率限制 600次/分钟
 	 * 
-	 * @param access_token
+	 * @param access_token 调用接口凭证
 	 * @param data
 	 * @return
 	 */
 	public Object getapprovaldetail(String access_token, Object data) {
-		String url =  String.format(Wework.server_url+"/oa/getapprovaldetail?access_token=%s", access_token);
+		String url =  String.format("/oa/getapprovaldetail?access_token=%s", access_token);
 		
 //		请求示例
 //		{
 //		   "sp_no" : 201909270001 // 审批单编号。
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 }

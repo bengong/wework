@@ -1,12 +1,15 @@
-package wework.service;
+package wework.api;
 
-import wework.Wework;
+import org.nutz.ioc.loader.annotation.IocBean;
+
+import wework.AbstractMethods;
 
 /**
  * 企业微信公费电话。
  */
-public class DialService {
-
+@IocBean
+public class DialMethods extends AbstractMethods {
+	
 	/**
 	 * 获取公费电话拨打记录
 	 * 
@@ -18,7 +21,7 @@ public class DialService {
 	 * @return
 	 */
 	public Object get_dial_record(String access_token, Object data) {
-		String url =  String.format(Wework.server_url+"/dial/get_dial_record?access_token=%s", access_token);
+		String url =  String.format("/dial/get_dial_record?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -28,6 +31,6 @@ public class DialService {
 //		   "limit": 100
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 }

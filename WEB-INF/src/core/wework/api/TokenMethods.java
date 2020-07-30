@@ -1,21 +1,17 @@
-package wework.service;
+package wework.api;
 
-import org.nutz.http.Http;
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.json.Json;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
-import org.nutz.service.Service;
 
-import wework.Wework;
-import wework.domain.Token;
+import wework.AbstractMethods;
 
 @IocBean
-public class TokenService  extends Service {	
+public class TokenMethods  extends AbstractMethods {
 	
 	Log log = Logs.get();
 
-	public TokenService() {
+	public TokenMethods() {
 		super();
 	}
 
@@ -29,11 +25,8 @@ public class TokenService  extends Service {
 	 * @param corpsecret  应用的凭证密钥，获取方式参考：术语说明-secret
 	 * @return
 	 */
-	public Token gettoken(String corpid, String corpsecret) {		
-		String url = Wework.server_url+"/gettoken?corpid=%s&corpsecret=%s";
-		
-		String content = Http.get(String.format(url, corpid, corpsecret)).getContent();
-		
-		return Json.fromJson(Token.class, content);
+	public Object gettoken(String corpid, String corpsecret) {		
+		String url = String.format("/gettoken?corpid=%s&corpsecret=%s", corpid, corpsecret);
+		return get(url);
 	}
 }

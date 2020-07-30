@@ -4,7 +4,7 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 
-import wework.service.AgentService;
+import wework.api.AgentMethods;
 
 /**
  * 應用管理。
@@ -15,7 +15,7 @@ import wework.service.AgentService;
 public class AgentModule {
 	
 	@Inject
-	AgentService agentService;
+	AgentMethods agentMethods;
 	
 	/**
 	 * 获取指定的应用详情
@@ -26,7 +26,7 @@ public class AgentModule {
 	 */
 	@At("/get/?/?")
 	public Object get(String access_token, String agentid) {	
-		return agentService.get(access_token, agentid);
+		return agentMethods.get(access_token, agentid);
 	}
 	
 	/**
@@ -37,6 +37,6 @@ public class AgentModule {
 	 */
 	@At("/list/?")
 	public Object list(String access_token) {
-		return agentService.list(access_token);
+		return agentMethods.list(access_token);
 	}
 }

@@ -1,4 +1,4 @@
-package wework.service;
+package wework.api;
 
 import java.util.List;
 
@@ -6,19 +6,18 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
-import org.nutz.service.Service;
 
-import wework.Wework;
+import wework.AbstractMethods;
 
 /**
  * 成員服務。
  */
 @IocBean
-public class TagService  extends Service {	
+public class TagMethods extends AbstractMethods {
 	
 	Log log = Logs.get();
 
-	public TagService() {
+	public TagMethods() {
 		super();
 	}
 	
@@ -30,8 +29,8 @@ public class TagService  extends Service {
 	 * @return
 	 */
 	public Integer create(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/tag/create?access_token=%s", access_token);	
-		Object result = Wework.postJson(url, data);		
+		String url = String.format("/tag/create?access_token=%s", access_token);	
+		Object result = postJson(url, data);		
 		return (Integer)Mapl.cell(result, "tagid");
 	}
 	
@@ -42,9 +41,9 @@ public class TagService  extends Service {
 	 * @param data
 	 */
 	public Object update(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/tag/update?access_token=%s", access_token);
+		String url = String.format("/tag/update?access_token=%s", access_token);
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -54,8 +53,8 @@ public class TagService  extends Service {
 	 * @param tagid
 	 */
 	public Object delete(String access_token, String tagid) {		
-		String url = String.format(Wework.server_url+"/tag/delete?access_token=%s&tagid=%s", access_token, tagid);		
-		return Wework.get(url);
+		String url = String.format("/tag/delete?access_token=%s&tagid=%s", access_token, tagid);		
+		return get(url);
 	}
 
 	/**
@@ -66,8 +65,8 @@ public class TagService  extends Service {
 	 * @return
 	 */
 	public Object get(String access_token, String tagid) {		
-		String url =  String.format(Wework.server_url+"/tag/get?access_token=%s&tagid=%s", access_token, tagid);
-		return Wework.get(url);
+		String url =  String.format("/tag/get?access_token=%s&tagid=%s", access_token, tagid);
+		return get(url);
 	}
 	
 	/**
@@ -78,9 +77,9 @@ public class TagService  extends Service {
 	 * @return
 	 */
 	public Object addtagusers(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/tag/addtagusers?access_token=%s", access_token);
+		String url = String.format("/tag/addtagusers?access_token=%s", access_token);
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -91,9 +90,9 @@ public class TagService  extends Service {
 	 * @return
 	 */
 	public Object deltagusers(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/tag/deltagusers?access_token=%s", access_token);
+		String url = String.format("/tag/deltagusers?access_token=%s", access_token);
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	
@@ -105,8 +104,8 @@ public class TagService  extends Service {
 	 * @return taglist
 	 */
 	public List list(String access_token, String department_id, String fetch_child) {		
-		String url =  String.format(Wework.server_url+"/tag/list?access_token=%s", access_token);
-		Object result = Wework.get(url);
+		String url =  String.format("/tag/list?access_token=%s", access_token);
+		Object result = get(url);
 		List taglist = (List)Mapl.cell(result, "taglist");
 		return taglist;
 	}

@@ -1,12 +1,15 @@
-package wework.service;
+package wework.api;
 
-import wework.Wework;
+import org.nutz.ioc.loader.annotation.IocBean;
+
+import wework.AbstractMethods;
 
 /**
  * 消息管理。
  */
-public class MessageService {
-
+@IocBean
+public class MessageMethods extends AbstractMethods {
+	
 	/**
 	 * 
 	 * @param access_token
@@ -14,9 +17,9 @@ public class MessageService {
 	 * @return
 	 */
 	public Object send(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/message/send?access_token=%s&agentid=%s", access_token);
+		String url =  String.format("/message/send?access_token=%s&agentid=%s", access_token);
 	
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	public void test() {

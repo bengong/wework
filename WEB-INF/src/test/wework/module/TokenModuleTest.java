@@ -4,20 +4,20 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 
-import wework.service.TokenService;
+import wework.api.TokenMethods;
 
 @IocBean
 @At("token-test")
 public class TokenModuleTest {
 	
 	@Inject
-	TokenService tokenService;
+	TokenMethods tokenMethods;
 	
 	@At("/gettoken")
 	public Object gettoken() {
 		String corpid = "wwea1a491e1639ecd6";
 		String corpsecret = "dfGh-do1kJ_uUS168NBG4dsXyOkYPeHJpqUIVBG52ys";
 		
-		return tokenService.gettoken(corpid, corpsecret);
+		return tokenMethods.gettoken(corpid, corpsecret);
 	}
 }

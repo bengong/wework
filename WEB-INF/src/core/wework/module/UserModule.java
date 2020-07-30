@@ -12,8 +12,8 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.service.CorpService;
-import wework.service.UserService;
+import wework.api.CorpMethods;
+import wework.api.UserMethods;
 
 @IocBean
 @At("user")
@@ -22,10 +22,10 @@ public class UserModule {
 	String agentid = "contacts";
 	
 	@Inject
-	CorpService corpService;	
+	CorpMethods corpMethods;	
 	
 	@Inject
-	UserService userService;
+	UserMethods userMethods;
 	
 	Log log = Logs.get();
 	
@@ -83,7 +83,7 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.title", "my miniprogram");
 		
-		return userService.create(corpService.token(agentid), data);
+		return userMethods.create(corpMethods.token(agentid), data);
 	}
 	
 	/**
@@ -143,12 +143,12 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.title", "my miniprogram");
 		
-		return userService.update(corpService.token(agentid), data);
+		return userMethods.update(corpMethods.token(agentid), data);
 	}
 
 	@At({"/get/?"})
 	public Object get(String userid) {	
-		return userService.get(corpService.token(agentid), userid);
+		return userMethods.get(corpMethods.token(agentid), userid);
 	}
 	
 	/**
@@ -159,20 +159,20 @@ public class UserModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String userid) {	
-		return userService.delete(corpService.token(agentid), userid);
+		return userMethods.delete(corpMethods.token(agentid), userid);
 	}
 	
 	
 	@At({"/simplelist/?/?"})
 	public List simplelist(String department_id, String fetch_child) {
-		List result =  userService.simplelist(corpService.token(agentid), department_id, fetch_child);
+		List result =  userMethods.simplelist(corpMethods.token(agentid), department_id, fetch_child);
 		
 		return result;
 	}
 	
 	@At({"/list/?/?"})
 	public List list(String department_id, String fetch_child) {
-		List result =  userService.list(corpService.token(agentid), department_id, fetch_child);
+		List result =  userMethods.list(corpMethods.token(agentid), department_id, fetch_child);
 		
 		return result;
 	}

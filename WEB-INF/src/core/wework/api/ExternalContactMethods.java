@@ -1,19 +1,21 @@
-package wework.service;
+package wework.api;
 
 import java.util.List;
 
+import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mapl.Mapl;
 
-import wework.Wework;
+import wework.AbstractMethods;
 
 /**
  * 外部联系人。
  *
  */
-public class ExternalContactService {
+@IocBean
+public class ExternalContactMethods  extends AbstractMethods {
 	
 	public Object remark(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/remark?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/remark?access_token=%s", access_token);
 		
 //		{
 //			   "userid":"zhangsan",
@@ -28,18 +30,18 @@ public class ExternalContactService {
 //			   "remark_pic_mediaid":"MEDIAID"
 //			}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	
 	public Object get(String access_token, String external_userid) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/get?access_token=%s&external_userid=%s", access_token, external_userid);
-		return Wework.get(url);
+		String url =  String.format("/externalcontact/get?access_token=%s&external_userid=%s", access_token, external_userid);
+		return get(url);
 	}
 	
 	public Object list(String access_token, String userid) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/list?access_token=%s&userid=%s", access_token, userid);
-		Object result = Wework.get(url);
+		String url =  String.format("/externalcontact/list?access_token=%s&userid=%s", access_token, userid);
+		Object result = get(url);
 		List external_userid = (List)Mapl.cell(result, "external_userid");
 		return external_userid;
 	}
@@ -52,7 +54,7 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object get_corp_tag_list(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/get_corp_tag_list?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/get_corp_tag_list?access_token=%s", access_token);
 		
 //		{
 //		    "tag_id": [
@@ -61,7 +63,7 @@ public class ExternalContactService {
 //		    ]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -72,7 +74,7 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object add_corp_tag(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/add_corp_tag?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/add_corp_tag?access_token=%s", access_token);
 		
 //		{
 //		    "group_id": "GROUP_ID",
@@ -89,7 +91,7 @@ public class ExternalContactService {
 //		    ]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -100,7 +102,7 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object edit_corp_tag(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/add_corp_tag?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/add_corp_tag?access_token=%s", access_token);
 		
 //		{
 //		    "group_id": "GROUP_ID",
@@ -117,7 +119,7 @@ public class ExternalContactService {
 //		    ]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -128,7 +130,7 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object del_corp_tag(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/del_corp_tag?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/del_corp_tag?access_token=%s", access_token);
 		
 //		{
 //		    "tag_id": [
@@ -141,7 +143,7 @@ public class ExternalContactService {
 //		    ]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -154,7 +156,7 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object mark_tag(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/del_corp_tag?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/del_corp_tag?access_token=%s", access_token);
 		
 //		{
 //		    "userid":"zhangsan",
@@ -163,7 +165,7 @@ public class ExternalContactService {
 //		    "remove_tag":["TAGID3","TAGID4"]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -176,13 +178,13 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object groupchat(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/groupchat?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/groupchat?access_token=%s", access_token);
 		
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -195,13 +197,13 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object send_welcome_msg(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/send_welcome_msg?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/send_welcome_msg?access_token=%s", access_token);
 		
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -216,13 +218,13 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object add_msg_template(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/add_msg_template?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/add_msg_template?access_token=%s", access_token);
 		
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 
 	
@@ -234,13 +236,13 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object get_group_msg_result(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/get_group_msg_result?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/get_group_msg_result?access_token=%s", access_token);
 		
 //		{
 //		    "msgid": "msgGCAAAXtWyujaWJHDDGi0mACAAAA"
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -251,19 +253,19 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object get_unassigned_list(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/get_unassigned_list?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/get_unassigned_list?access_token=%s", access_token);
 		
 //		{
 //			  "page_id":0,
 //			  "page_size":100
 //			}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	
 	public Object transfer(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/transfer?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/transfer?access_token=%s", access_token);
 		
 //		{
 //			   "external_userid": "woAJ2GCAAAXtWyujaWJHDDGi0mACAAAA",
@@ -271,7 +273,7 @@ public class ExternalContactService {
 //			   "takeover_userid": "lisi"
 //			}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -282,7 +284,7 @@ public class ExternalContactService {
 	 * @return
 	 */
 	public Object get_user_behavior_data(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/externalcontact/get_user_behavior_data?access_token=%s", access_token);
+		String url =  String.format("/externalcontact/get_user_behavior_data?access_token=%s", access_token);
 		
 //		{
 //		    "userid": [
@@ -298,6 +300,6 @@ public class ExternalContactService {
 //		    "end_time":1536940800
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 }

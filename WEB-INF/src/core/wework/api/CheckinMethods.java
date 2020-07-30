@@ -1,12 +1,14 @@
-package wework.service;
+package wework.api;
 
-import wework.Wework;
+import org.nutz.ioc.loader.annotation.IocBean;
+
+import wework.AbstractMethods;
 
 /**
  * 打卡管理。
  */
-public class CheckinService {
-
+@IocBean
+public class CheckinMethods extends AbstractMethods {
 	/**
 	 * 获取打卡数据
 	 * 
@@ -14,7 +16,7 @@ public class CheckinService {
 	 */
 	public Object getcheckindata(String access_token, Object data) {
 		// // 调用接口凭证。企业必须使用打卡应用的Secret获取access_token
-		String url =  String.format(Wework.server_url+"/checkin/getcheckindata?access_token=%s", access_token);
+		String url =  String.format("/checkin/getcheckindata?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -24,7 +26,7 @@ public class CheckinService {
 //		   "useridlist": ["james","paul"]
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 
 	/**
@@ -36,7 +38,7 @@ public class CheckinService {
 	 * @param access_token 调用接口凭证
 	 */
 	public Object getcheckinoption(String access_token, Object data) {		
-		String url =  String.format(Wework.server_url+"/checkin/getcheckinoption?access_token=%s", access_token);
+		String url =  String.format("/checkin/getcheckinoption?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -44,6 +46,6 @@ public class CheckinService {
 //		    "useridlist": ["james","paul"] // 需要获取打卡规则的用户列表
 //		}
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 }

@@ -1,8 +1,9 @@
-package wework.service;
+package wework.api;
 
+import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mapl.Mapl;
 
-import wework.Wework;
+import wework.AbstractMethods;
 
 /**
  * 异步批量接口说明
@@ -11,8 +12,8 @@ import wework.Wework;
  * 执行完成后，企业微信后台会通过任务事件通知企业获取结果。事件的内容是加密的，解密过程请参考 [消息的加解密处理][signure]，任务事件请参考异步任务完成事件推送。
  * 目前，仅为通讯录更新提供了异步批量接口</p>
  */
-public class BatchService {
-	
+@IocBean
+public class BatchMethods extends AbstractMethods {
 	/**
 	 * 增量更新成员
 	 * 
@@ -32,8 +33,8 @@ public class BatchService {
 //		    }
 //		}
 		
-		String url = String.format(Wework.server_url+"/batch/syncuser?access_token=%s", access_token);	
-		Object result = Wework.postJson(url, data);		
+		String url = String.format("/batch/syncuser?access_token=%s", access_token);	
+		Object result = postJson(url, data);		
 		return (Integer)Mapl.cell(result, "jobid");// 异步任务id，最大长度为64字节
 	}
 	
@@ -56,8 +57,8 @@ public class BatchService {
 //		    }
 //		}
 		
-		String url = String.format(Wework.server_url+"/batch/replaceuser?access_token=%s", access_token);	
-		Object result = Wework.postJson(url, data);		
+		String url = String.format("/batch/replaceuser?access_token=%s", access_token);	
+		Object result = postJson(url, data);		
 		return (Integer)Mapl.cell(result, "jobid");// 异步任务id，最大长度为64字节
 	}
 	
@@ -80,8 +81,8 @@ public class BatchService {
 //		    }
 //		}
 		
-		String url = String.format(Wework.server_url+"/batch/replaceparty?access_token=%s", access_token);	
-		Object result = Wework.postJson(url, data);		
+		String url = String.format("/batch/replaceparty?access_token=%s", access_token);	
+		Object result = postJson(url, data);		
 		return (Integer)Mapl.cell(result, "jobid");// 异步任务id，最大长度为64字节
 	}
 	
@@ -116,7 +117,7 @@ public class BatchService {
 //		           }
 //		       ]
 		
-		String url = String.format(Wework.server_url+"/batch/replaceparty?access_token=%s&jobid=", access_token, jobid);	
-		return Wework.get(url);		
+		String url = String.format("/batch/replaceparty?access_token=%s&jobid=", access_token, jobid);	
+		return get(url);		
 	}
 }

@@ -1,7 +1,12 @@
-package wework.service;
+package wework.api;
 
-public class SuiteService {
+import org.nutz.ioc.loader.annotation.IocBean;
 
+import wework.AbstractMethods;
+
+@IocBean
+public class SuiteMethods extends AbstractMethods {
+	
 	/**
 	 * 新增成员事件
 	 * 

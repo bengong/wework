@@ -11,8 +11,8 @@ import org.nutz.log.Logs;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 
-import wework.service.CorpService;
-import wework.service.MediaService;
+import wework.api.CorpMethods;
+import wework.api.MediaMethods;
 
 /**
  * 媒体素材。
@@ -21,9 +21,9 @@ import wework.service.MediaService;
 @At("media")
 public class MediaModule {
 	@Inject
-	CorpService corpService;
+	CorpMethods corpMethods;
 	@Inject
-	MediaService mediaService;
+	MediaMethods mediaMethods;
 
 	Log log = Logs.get();
 	
@@ -41,7 +41,7 @@ public class MediaModule {
 		NutMap data = new NutMap();
 		data.put(file.getName(), file);
 		
-		Object result = mediaService.upload(corpService.token(agentid), type, data);
+		Object result = mediaMethods.upload(corpMethods.token(agentid), type, data);
 		
 //		返回值样例
 //		{
@@ -70,7 +70,7 @@ public class MediaModule {
 		NutMap data = new NutMap();
 		data.put(file.getName(), file);
 		
-		Object result =  mediaService.uploadimg(corpService.token(agentid), data);
+		Object result =  mediaMethods.uploadimg(corpMethods.token(agentid), data);
 
 //		返回值样例
 //		{
@@ -96,7 +96,7 @@ public class MediaModule {
 		// 375SQwdxk3pYWdEDjagCkdEMeiMEBG5Rl9peCWIF6Em708nj24gOgPHP1FadubrSk
 		// 3avuTt1i9bZtlmYJlAdrb3q6D0mO6AeVjDRyZgbJhkKc
 
-		return mediaService.download(corpService.token(agentid), media_id);		
+		return mediaMethods.download(corpMethods.token(agentid), media_id);		
 	}
 	
 	/**
@@ -109,6 +109,6 @@ public class MediaModule {
 	@At("/downloadvoice/?/?")
 	@Ok("raw:file")
 	public Object downloadVoice(String agentid, String media_id) {
-		return mediaService.downloadVoice(corpService.token(agentid), media_id);
+		return mediaMethods.downloadVoice(corpMethods.token(agentid), media_id);
 	}
 }

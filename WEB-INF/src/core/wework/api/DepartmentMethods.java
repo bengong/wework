@@ -1,4 +1,4 @@
-package wework.service;
+package wework.api;
 
 import java.util.List;
 
@@ -6,16 +6,15 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
-import org.nutz.service.Service;
 
-import wework.Wework;
+import wework.AbstractMethods;
 
 @IocBean
-public class DepartmentService  extends Service {	
+public class DepartmentMethods  extends AbstractMethods {
 	
 	Log log = Logs.get();
 
-	public DepartmentService() {
+	public DepartmentMethods() {
 		super();
 	}
 	
@@ -27,8 +26,8 @@ public class DepartmentService  extends Service {
 	 * @return
 	 */
 	public Integer create(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/department/create?access_token=%s", access_token);	
-		Object result = Wework.postJson(url, data);	
+		String url = String.format("/department/create?access_token=%s", access_token);	
+		Object result = postJson(url, data);	
 		
 		return (Integer)Mapl.cell(result, "id");
 	}
@@ -40,9 +39,9 @@ public class DepartmentService  extends Service {
 	 * @param data
 	 */
 	public Object update(String access_token, Object data) {		
-		String url = String.format(Wework.server_url+"/department/update?access_token=%s", access_token);
+		String url = String.format("/department/update?access_token=%s", access_token);
 		
-		return Wework.postJson(url, data);
+		return postJson(url, data);
 	}
 	
 	/**
@@ -52,8 +51,8 @@ public class DepartmentService  extends Service {
 	 * @param id
 	 */
 	public Object delete(String access_token, String id) {		
-		String url = String.format(Wework.server_url+"/department/delete?access_token=%s&id=%s", access_token, id);		
-		return Wework.get(url);
+		String url = String.format("/department/delete?access_token=%s&id=%s", access_token, id);		
+		return get(url);
 	}
 	
 	/**
@@ -64,8 +63,8 @@ public class DepartmentService  extends Service {
 	 * @return
 	 */
 	public List list(String access_token, String id) {		
-		String url =  String.format(Wework.server_url+"/department/list?access_token=%s&id=%s", access_token, id);
-		Object result = Wework.get(url);
+		String url =  String.format("/department/list?access_token=%s&id=%s", access_token, id);
+		Object result = get(url);
 		
 		List departments = (List)Mapl.cell(result, "department");
 		return departments;
