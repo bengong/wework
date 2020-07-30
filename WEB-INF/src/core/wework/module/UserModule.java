@@ -12,18 +12,11 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.api.CorpMethods;
 import wework.api.UserMethods;
 
 @IocBean
 @At("user")
 public class UserModule {
-	
-	String agentid = "contacts";
-	
-	@Inject
-	CorpMethods corpMethods;	
-	
 	@Inject
 	UserMethods userMethods;
 	
@@ -83,7 +76,7 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.title", "my miniprogram");
 		
-		return userMethods.create(corpMethods.gettoken(agentid), data);
+		return userMethods.create(data);
 	}
 	
 	/**
@@ -143,12 +136,12 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.title", "my miniprogram");
 		
-		return userMethods.update(corpMethods.gettoken(agentid), data);
+		return userMethods.update(data);
 	}
 
 	@At({"/get/?"})
 	public Object get(String userid) {	
-		return userMethods.get(corpMethods.gettoken(agentid), userid);
+		return userMethods.get(userid);
 	}
 	
 	/**
@@ -159,20 +152,20 @@ public class UserModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String userid) {	
-		return userMethods.delete(corpMethods.gettoken(agentid), userid);
+		return userMethods.delete(userid);
 	}
 	
 	
 	@At({"/simplelist/?/?"})
 	public List simplelist(String department_id, String fetch_child) {
-		List result =  userMethods.simplelist(corpMethods.gettoken(agentid), department_id, fetch_child);
+		List result =  userMethods.simplelist(department_id, fetch_child);
 		
 		return result;
 	}
 	
 	@At({"/list/?/?"})
 	public List list(String department_id, String fetch_child) {
-		List result =  userMethods.list(corpMethods.gettoken(agentid), department_id, fetch_child);
+		List result =  userMethods.list(department_id, fetch_child);
 		
 		return result;
 	}

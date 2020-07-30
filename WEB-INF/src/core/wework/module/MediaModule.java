@@ -11,7 +11,6 @@ import org.nutz.log.Logs;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 
-import wework.api.CorpMethods;
 import wework.api.MediaMethods;
 
 /**
@@ -20,8 +19,6 @@ import wework.api.MediaMethods;
 @IocBean
 @At("media")
 public class MediaModule {
-	@Inject
-	CorpMethods corpMethods;
 	@Inject
 	MediaMethods mediaMethods;
 
@@ -41,7 +38,7 @@ public class MediaModule {
 		NutMap data = new NutMap();
 		data.put(file.getName(), file);
 		
-		Object result = mediaMethods.upload(corpMethods.gettoken(agentid), type, data);
+		Object result = mediaMethods.upload(type, data);
 		
 //		返回值样例
 //		{
@@ -70,7 +67,7 @@ public class MediaModule {
 		NutMap data = new NutMap();
 		data.put(file.getName(), file);
 		
-		Object result =  mediaMethods.uploadimg(corpMethods.gettoken(agentid), data);
+		Object result =  mediaMethods.uploadimg(data);
 
 //		返回值样例
 //		{
@@ -96,7 +93,7 @@ public class MediaModule {
 		// 375SQwdxk3pYWdEDjagCkdEMeiMEBG5Rl9peCWIF6Em708nj24gOgPHP1FadubrSk
 		// 3avuTt1i9bZtlmYJlAdrb3q6D0mO6AeVjDRyZgbJhkKc
 
-		return mediaMethods.download(corpMethods.gettoken(agentid), media_id);		
+		return mediaMethods.download(media_id);		
 	}
 	
 	/**
@@ -109,6 +106,6 @@ public class MediaModule {
 	@At("/downloadvoice/?/?")
 	@Ok("raw:file")
 	public Object downloadVoice(String agentid, String media_id) {
-		return mediaMethods.downloadVoice(corpMethods.gettoken(agentid), media_id);
+		return mediaMethods.downloadVoice(media_id);
 	}
 }

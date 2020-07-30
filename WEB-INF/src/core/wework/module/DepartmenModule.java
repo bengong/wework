@@ -12,7 +12,6 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.api.CorpMethods;
 import wework.api.DepartmentMethods;
 
 /**
@@ -22,11 +21,6 @@ import wework.api.DepartmentMethods;
 @IocBean
 @At("department")
 public class DepartmenModule {
-	
-	String agentid = "contacts";// 通讯录
-	
-	@Inject
-	CorpMethods corpMethods;	
 	
 	@Inject
 	DepartmentMethods departmentMethods;
@@ -45,7 +39,7 @@ public class DepartmenModule {
 		Mapl.put(data, "name_en", "RDGZ");
 		Mapl.put(data, "parentid", "1");
 		
-		return departmentMethods.create(corpMethods.gettoken(agentid), data);
+		return departmentMethods.create(data);
 	}
 	
 	/**
@@ -62,7 +56,7 @@ public class DepartmenModule {
 		// Mapl.put(data, "parentid", "");
 		Mapl.put(data, "order", "100000000");
 		
-		return departmentMethods.update(corpMethods.gettoken(agentid), data);
+		return departmentMethods.update(data);
 	}
 	
 	/**
@@ -73,13 +67,13 @@ public class DepartmenModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String id) {	
-		return departmentMethods.delete(corpMethods.gettoken(agentid), id);
+		return departmentMethods.delete(id);
 	}
 	
 	@At({"/list", "/list/?"})
 	public List list(String id) {
 		if(id == null) id = "";
-		List result =  departmentMethods.list(corpMethods.gettoken(agentid), id);
+		List result =  departmentMethods.list(id);
 		
 		return result;
 	}

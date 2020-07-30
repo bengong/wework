@@ -12,7 +12,7 @@ import org.nutz.mapl.Mapl;
 @IocBean
 public class ExternalContactMethods  extends AbstractMethods {
 	
-	public Object remark(String access_token, Object data) {
+	public Object remark(Object data) {
 //		{
 //			   "userid":"zhangsan",
 //			   "external_userid":"woAJ2GCAAAd1asdasdjO4wKmE8Aabj9AAA",
@@ -26,16 +26,16 @@ public class ExternalContactMethods  extends AbstractMethods {
 //			   "remark_pic_mediaid":"MEDIAID"
 //			}
 		
-		return post(String.format("/externalcontact/remark?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/remark?access_token=%s", gettoken()), data);
 	}
 	
 	
-	public Object get(String access_token, String external_userid) {
-		return get(String.format("/externalcontact/get?access_token=%s&external_userid=%s", access_token, external_userid));
+	public Object get(String external_userid) {
+		return get(String.format("/externalcontact/get?access_token=%s&external_userid=%s", gettoken(), external_userid));
 	}
 	
-	public Object list(String access_token, String userid) {
-		Object result = get(String.format("/externalcontact/list?access_token=%s&userid=%s", access_token, userid));
+	public Object list(String userid) {
+		Object result = get(String.format("/externalcontact/list?access_token=%s&userid=%s", gettoken(), userid));
 		List external_userid = (List)Mapl.cell(result, "external_userid");
 		return external_userid;
 	}
@@ -43,11 +43,11 @@ public class ExternalContactMethods  extends AbstractMethods {
 	/**
 	 * 获取企业标签库。
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object get_corp_tag_list(String access_token, Object data) {	
+	public Object get_corp_tag_list(Object data) {	
 //		{
 //		    "tag_id": [
 //		        "etXXXXXXXXXX",
@@ -55,17 +55,17 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return post(String.format("/externalcontact/get_corp_tag_list?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/get_corp_tag_list?access_token=%s", gettoken()), data);
 	}
 	
 	/**
 	 * 添加企业客户标签
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object add_corp_tag(String access_token, Object data) {
+	public Object add_corp_tag(Object data) {
 //		{
 //		    "group_id": "GROUP_ID",
 //		    "group_name": "GROUP_NAME",
@@ -81,17 +81,17 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return post(String.format("/externalcontact/add_corp_tag?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/add_corp_tag?access_token=%s", gettoken()), data);
 	}
 	
 	/**
 	 * 编辑企业客户标签
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object edit_corp_tag(String access_token, Object data) {
+	public Object edit_corp_tag(Object data) {
 		
 //		{
 //		    "group_id": "GROUP_ID",
@@ -108,17 +108,17 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return post(String.format("/externalcontact/add_corp_tag?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/add_corp_tag?access_token=%s", gettoken()), data);
 	}
 	
 	/**
 	 * 删除企业客户标签
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object del_corp_tag(String access_token, Object data) {
+	public Object del_corp_tag(Object data) {
 		
 //		{
 //		    "tag_id": [
@@ -131,7 +131,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return post(String.format("/externalcontact/del_corp_tag?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/del_corp_tag?access_token=%s", gettoken()), data);
 	}
 	
 	/**
@@ -139,11 +139,11 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * 
 	 * @see  <a href="https://work.weixin.qq.com/api/doc/90001/90143/92697">https://work.weixin.qq.com/api/doc/90001/90143/92697</a>
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object mark_tag(String access_token, Object data) {
+	public Object mark_tag(Object data) {
 //		{
 //		    "userid":"zhangsan",
 //		    "external_userid":"woAJ2GCAAAd1NPGHKSD4wKmE8Aabj9AAA",
@@ -151,7 +151,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    "remove_tag":["TAGID3","TAGID4"]
 //		}
 		
-		return post(String.format("/externalcontact/del_corp_tag?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/del_corp_tag?access_token=%s", gettoken()), data);
 	}
 	
 	/**
@@ -159,16 +159,16 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * 
 	 * <p>通过客户群ID，获取详情。包括群名、群成员列表、群成员入群时间、入群方式。（客户群是由具有客户群使用权限的成员创建的外部群）</p>
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object groupchat(String access_token, Object data) {
+	public Object groupchat(Object data) {
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return post(String.format("/externalcontact/groupchat?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/groupchat?access_token=%s", gettoken()), data);
 	}
 	
 	/**
@@ -176,17 +176,17 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * 
 	 * 
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object send_welcome_msg(String access_token, Object data) {
+	public Object send_welcome_msg(Object data) {
 		
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return post(String.format("/externalcontact/send_welcome_msg?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/send_welcome_msg?access_token=%s", gettoken()), data);
 	}
 	
 	/**
@@ -196,71 +196,71 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * 注意：调用该接口并不会直接发送消息给客户/客户群，需要相关的客服人员操作以后才会实际发送（客服人员的企业微信需要升级到2.7.5及以上版本）
 	 * 同一个企业每个自然月内仅可针对一个客户/客户群发送4条消息，超过限制的用户将会被忽略。</p>
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object add_msg_template(String access_token, Object data) {
+	public Object add_msg_template(Object data) {
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return post(String.format("/externalcontact/add_msg_template?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/add_msg_template?access_token=%s", gettoken()), data);
 	}
 
 	
 	/**
 	 * 获取企业群发消息发送结果
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object get_group_msg_result(String access_token, Object data) {
+	public Object get_group_msg_result(Object data) {
 		
 //		{
 //		    "msgid": "msgGCAAAXtWyujaWJHDDGi0mACAAAA"
 //		}
 		
-		return post(String.format("/externalcontact/get_group_msg_result?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/get_group_msg_result?access_token=%s", gettoken()), data);
 	}
 	
 	/**
 	 * 获取离职成员的客户列表
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object get_unassigned_list(String access_token, Object data) {
+	public Object get_unassigned_list(Object data) {
 		
 //		{
 //			  "page_id":0,
 //			  "page_size":100
 //			}
 		
-		return post(String.format("/externalcontact/get_unassigned_list?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/get_unassigned_list?access_token=%s", gettoken()), data);
 	}
 	
 	
-	public Object transfer(String access_token, Object data) {
+	public Object transfer(Object data) {
 //		{
 //			   "external_userid": "woAJ2GCAAAXtWyujaWJHDDGi0mACAAAA",
 //			   "handover_userid": "zhangsan",
 //			   "takeover_userid": "lisi"
 //			}
 		
-		return post(String.format("/externalcontact/transfer?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/transfer?access_token=%s", gettoken()), data);
 	}
 	
 	/**
 	 * 获取联系客户统计数据
 	 * 
-	 * @param access_token
+	 * 
 	 * @param data
 	 * @return
 	 */
-	public Object get_user_behavior_data(String access_token, Object data) {
+	public Object get_user_behavior_data(Object data) {
 //		{
 //		    "userid": [
 //		        "zhangsan",
@@ -275,6 +275,6 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    "end_time":1536940800
 //		}
 		
-		return post(String.format("/externalcontact/get_user_behavior_data?access_token=%s", access_token), data);
+		return post(String.format("/externalcontact/get_user_behavior_data?access_token=%s", gettoken()), data);
 	}
 }

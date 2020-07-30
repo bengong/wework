@@ -9,7 +9,6 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.api.CorpMethods;
 import wework.api.MessageMethods;
 
 /**
@@ -18,9 +17,6 @@ import wework.api.MessageMethods;
 @IocBean
 @At("message")
 public class MessageModule {
-	
-	@Inject
-	CorpMethods corpMethods;
 	@Inject
 	MessageMethods messageMethods;
 	
@@ -42,7 +38,7 @@ public class MessageModule {
 		Mapl.put(data, "department", "[1, 2]");
 		Mapl.put(data, "order", "[10,40]");
 		
-		return messageMethods.send(corpMethods.gettoken(agentid), data);
+		return messageMethods.send(data);
 	}
 	
 	
@@ -91,7 +87,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.gettoken(agentid), data);
+		return messageMethods.send(data);
 	}
 	
 	@At("/image/?/?")
@@ -131,7 +127,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.gettoken(agentid), data);
+		return messageMethods.send(data);
 	}
 
 	@At("/voice/?/?")
@@ -169,7 +165,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.gettoken(agentid), data);
+		return messageMethods.send(data);
 	}
 
 	/**
@@ -222,6 +218,6 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.gettoken(agentid), data);
+		return messageMethods.send(data);
 	}
 }

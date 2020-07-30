@@ -11,7 +11,6 @@ public class AgentMethods extends AbstractMethods {
 	/**
 	 * 获取指定的应用详情
 	 * 
-	 * @param access_token 调用接口凭证
 	 * @param agentid
 	 * @return
 	 */

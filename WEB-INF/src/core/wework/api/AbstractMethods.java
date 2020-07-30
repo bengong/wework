@@ -13,10 +13,20 @@ import wework.WeException;
 import wework.Wework;
 
 public abstract class AbstractMethods {
+	
 	@Inject
-	private Wework wework;
+	protected Wework wework;
+
+	protected String agentid;// 通讯录
 	
 	protected Log log = Logs.get();
+	
+	public AbstractMethods() {
+	}
+	
+	public AbstractMethods(String agentid) {
+		this.agentid = agentid;
+	}
 	
 	protected Object get(String url) {
 		return wework.get(url);
@@ -48,6 +58,10 @@ public abstract class AbstractMethods {
 	protected InputStream download(String url) {
     	return wework.download(url);
     }
+	
+	public String gettoken() {
+		return gettoken(agentid);
+	}
 	
 	/**
 	 * 获取应用对应的 access_token。

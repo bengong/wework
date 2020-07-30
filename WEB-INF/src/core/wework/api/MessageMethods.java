@@ -9,13 +9,12 @@ import org.nutz.ioc.loader.annotation.IocBean;
 public class MessageMethods extends AbstractMethods {
 	
 	/**
-	 * 
-	 * @param access_token
+	 *
 	 * @param agentid
 	 * @return
 	 */
-	public Object send(String access_token, Object data) {
-		return post(String.format("/message/send?access_token=%s&agentid=%s", access_token), data);
+	public Object send(Object data) {
+		return post(String.format("/message/send?access_token=%s&agentid=%s", gettoken()), data);
 	}
 	
 	public void test() {

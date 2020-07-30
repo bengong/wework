@@ -15,10 +15,9 @@ public class DialMethods extends AbstractMethods {
 	 * 
 	 * 企业需要使用公费电话secret所获取的accesstoken来调用
 	 * 
-	 * @param access_token 调用接口凭证
 	 * @return
 	 */
-	public Object get_dial_record(String access_token, Object data) {
+	public Object get_dial_record(Object data) {
 //		请求示例
 //		{
 //		   "start_time": 1536508800,
@@ -27,6 +26,6 @@ public class DialMethods extends AbstractMethods {
 //		   "limit": 100
 //		}
 		
-		return post(String.format("/dial/get_dial_record?access_token=%s", access_token), data);
+		return post(String.format("/dial/get_dial_record?access_token=%s", gettoken()), data);
 	}
 }

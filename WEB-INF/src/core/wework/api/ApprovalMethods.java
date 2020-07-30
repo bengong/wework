@@ -14,17 +14,16 @@ public class ApprovalMethods extends AbstractMethods {
 	 * 审批应用的Secret可获取企业自建模板及第三方服务商添加的模板详情；自建应用的Secret可获取企业自建模板的模板详情。
 	 * 接口调用频率限制为600次/分钟。
 	 * 
-	 * @param access_token 调用接口凭证
 	 * @return
 	 */
-	public Object gettemplatedetail(String access_token, Object data) {		
+	public Object gettemplatedetail(Object data) {		
 //		请求示例
 //		{
 //		   模板的唯一标识id。可在“获取审批单据详情”、“审批状态变化回调通知”中获得，也可在审批模板的模板编辑页面浏览器Url链接中获得。
 //		   "template_id" : "ZLqk8pcsAoXZ1eYa6vpAgfX28MPdYU3ayMaSPHaaa" 
 //		}
 		
-		return post(String.format("/oa/gettemplatedetail?access_token=%s", access_token), data);
+		return post(String.format("/oa/gettemplatedetail?access_token=%s", gettoken()), data);
 	}
 	
 	/**
@@ -32,11 +31,10 @@ public class ApprovalMethods extends AbstractMethods {
 	 * 
 	 * 企业可通过审批应用或自建应用Secret调用本接口，代应用可见范围内员工在企业微信“审批应用”内提交指定类型的审批申请。
 	 * 
-	 * @param access_token 调用接口凭证
 	 * @param data
 	 * @return
 	 */
-	public Object applyevent(String access_token, Object data) {
+	public Object applyevent(Object data) {
 		
 //		请求示例
 //		{
@@ -88,7 +86,7 @@ public class ApprovalMethods extends AbstractMethods {
 //		    ]
 //		}
 		
-		return post(String.format("/oa/applyevent?access_token=%s", access_token), data);
+		return post(String.format("/oa/applyevent?gettoken()=%s", gettoken()), data);
 	}
 	
 	/**
@@ -99,11 +97,10 @@ public class ApprovalMethods extends AbstractMethods {
 	 * 
 	 * <p>一次拉取调用最多拉取100个审批记录，可以通过多次拉取的方式来满足需求，但调用频率不可超过600次/分。</p>
 	 * 
-	 * @param access_token 调用接口凭证
 	 * @param data
 	 * @return
 	 */
-	public Object getapprovalinfo(String access_token, Object data) {
+	public Object getapprovalinfo(Object data) {
 //		请求示例
 //		{
 //		    "starttime" : "1569546000",
@@ -130,7 +127,7 @@ public class ApprovalMethods extends AbstractMethods {
 //		    ]
 //		}
 		
-		return post(String.format("/oa/getapprovalinfo?access_token=%s", access_token), data);
+		return post(String.format("/oa/getapprovalinfo?access_token=%s", gettoken()), data);
 	}
 	
 	/**
@@ -140,16 +137,15 @@ public class ApprovalMethods extends AbstractMethods {
 	 * 
 	 * 接口频率限制 600次/分钟
 	 * 
-	 * @param access_token 调用接口凭证
 	 * @param data
 	 * @return
 	 */
-	public Object getapprovaldetail(String access_token, Object data) {
+	public Object getapprovaldetail(Object data) {
 //		请求示例
 //		{
 //		   "sp_no" : 201909270001 // 审批单编号。
 //		}
 		
-		return post(String.format("/oa/getapprovaldetail?access_token=%s", access_token), data);
+		return post(String.format("/oa/getapprovaldetail?access_token=%s", gettoken()), data);
 	}
 }
