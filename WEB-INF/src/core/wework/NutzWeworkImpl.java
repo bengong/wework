@@ -17,68 +17,46 @@ import org.nutz.mapl.Mapl;
 /**
  * 缺省企业微信对象。
  */
-public class NutzWeworkImpl implements Wework {
-	
+public class NutzWeworkImpl implements Wework {	
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -9220340149800920348L;
 
-	protected Log log = Logs.get();
+		
+	public String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
 	
 	protected int Default_timeout = 60*1000;
 	
-	public Object get(String url) {
+	protected Log log = Logs.get();
+	
+	public final Object get(String url) {
 		log.info(url);		
-		return as(Http.get(url, Default_timeout));
+		return result(Http.get(server_url+url, Default_timeout));
     }
 	
-	public Object get(String url, Map<String, Object> params) {
-		return as(Http.get(url, params, Default_timeout));
+	public final Object get(String url, Map<String, Object> params) {
+		return result(Http.get(server_url+url, params, Default_timeout));
     }
 	
-	public Object postJson(String url, Object data) {		
+	public final Object postJson(String url, Object data) {		
         return postJson(url, data, Default_timeout);
     }
 	
 	/**
 	 * 将数据对象转换成json后，post出去。
+	 * 
 	 * @param url
 	 * @param data
 	 * @param timeout
 	 * @return
 	 */
-    public Object postJson(String url, Object data, int timeout) {
-        Request req = Request.create(url, METHOD.POST);
+    public final Object postJson(String url, Object data, int timeout) {
+        Request req = Request.create(server_url+url, METHOD.POST);
         req.getHeader().set("Content-Type", "application/json");
-        req.setData(Json.toJson(data));        
-        Response response = Sender.create(req).setTimeout(timeout).send();
-        
-        return as(response);
-    }
-
-    public <T> T as(Class<T> type, Response response) {
-    	Object data = as(response);    	
-    	return (T)Mapl.maplistToObj(data, type);
-    }
-    
-    public Object as(Response response) {
-    	String content = response.getContent();
-    	
-    	log.info(Json.toJson(response));
-    	log.info(Json.toJson(content));
-    	
-    	Object data = Json.fromJson(content);
-    	if(data != null) {
-    		Integer errcode =  (Integer)Mapl.cell(data, "errcode");
-    		String errmsg =  (String)Mapl.cell(data, "errmsg");
-    		if(errcode != 0) {
-    			throw new WeException(errmsg);
-    		}
-    	}
-    	
-    	return data;
-    }
+        req.setData(Json.toJson(data));       
+        return result(Sender.create(req).setTimeout(timeout).send());
+    }    
     
     /**
      * 上传文件。
@@ -88,11 +66,48 @@ public class NutzWeworkImpl implements Wework {
      * @param header
      * @return
      */
-    public Object upload(String url, Map<String, Object> params, Header header) {
-    	return as(Http.upload(url, params, header, Default_timeout));
+    public final Object upload(String url, Map<String, Object> params, Header header) {
+    	return result(Http.upload(server_url+url, params, header, Default_timeout));
     }
     
-    public InputStream download(String url) {
-    	return Http.get(url, Default_timeout).getStream();
+    public final InputStream download(String url) {
+    	return Http.get(server_url+url, Default_timeout).getStream();
     }
+    
+    /**
+     * 获取结果对象。
+     *  
+     * @param response
+     * @return
+     */
+    private final Object result(Response response) {
+    	
+    	if(response.isServerError()) {
+    		throw new WeException("服务端出错 "+response.getStatus() + response.getDetail());
+    	}
+    	if(response.isClientError()) {
+    		throw new WeException("客户端出错 "+response.getStatus() + response.getDetail());
+    	}
+    	
+    	//  不正常返回。
+    	if(!response.isOK()) {
+    		throw new WeException(response.getDetail());
+    	}
+    	    	
+    	String content = response.getContent();
+    	
+    	log.info(Json.toJson(response));
+    	
+    	Object result = Json.fromJson(content);
+    	if(result != null) {
+    		Integer errcode =  (Integer)Mapl.cell(result, "errcode");
+    		String errmsg =  (String)Mapl.cell(result, "errmsg");
+    		if(errcode != 0) {
+    			throw new WeException(errmsg);
+    		}
+    	}
+    	
+    	return result;
+    }
+
 }

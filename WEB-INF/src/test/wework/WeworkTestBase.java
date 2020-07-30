@@ -17,7 +17,5 @@ public abstract class WeworkTestBase {
 	            p.load(is);
 	            is.close();
 	        }
-	    }
-	    
-	    
+	    }	    
 }

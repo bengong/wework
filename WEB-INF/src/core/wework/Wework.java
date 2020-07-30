@@ -7,8 +7,6 @@ import org.nutz.http.Header;
 
 public interface Wework extends java.io.Serializable {
 	
-	public static String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
-	
 	public Object get(String url);
 	
 	public Object get(String url, Map<String, Object> params);

@@ -2,8 +2,6 @@ package wework.api;
 
 import org.nutz.ioc.loader.annotation.IocBean;
 
-import wework.AbstractMethods;
-
 @IocBean
 public class SuiteMethods extends AbstractMethods {
 	

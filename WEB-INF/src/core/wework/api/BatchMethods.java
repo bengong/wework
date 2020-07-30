@@ -3,8 +3,6 @@ package wework.api;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mapl.Mapl;
 
-import wework.AbstractMethods;
-
 /**
  * 异步批量接口说明
  * 

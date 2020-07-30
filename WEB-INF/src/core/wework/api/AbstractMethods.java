@@ -1,4 +1,4 @@
-package wework;
+package wework.api;
 
 import java.io.InputStream;
 import java.util.Map;
@@ -7,6 +7,8 @@ import org.nutz.http.Header;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+
+import wework.Wework;
 
 public abstract class AbstractMethods {
 	@Inject

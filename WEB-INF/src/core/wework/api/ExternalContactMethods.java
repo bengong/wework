@@ -5,8 +5,6 @@ import java.util.List;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mapl.Mapl;
 
-import wework.AbstractMethods;
-
 /**
  * 外部联系人。
  *

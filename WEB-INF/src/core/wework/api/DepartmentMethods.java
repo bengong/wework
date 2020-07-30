@@ -7,8 +7,6 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
-import wework.AbstractMethods;
-
 @IocBean
 public class DepartmentMethods  extends AbstractMethods {
 	

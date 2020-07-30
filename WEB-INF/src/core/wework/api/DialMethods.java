@@ -2,8 +2,6 @@ package wework.api;
 
 import org.nutz.ioc.loader.annotation.IocBean;
 
-import wework.AbstractMethods;
-
 /**
  * 企业微信公费电话。
  */

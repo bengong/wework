@@ -6,8 +6,6 @@ import java.util.Map;
 import org.nutz.http.Header;
 import org.nutz.ioc.loader.annotation.IocBean;
 
-import wework.AbstractMethods;
-
 /**
  * 素材管理。
  */

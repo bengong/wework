@@ -2,8 +2,6 @@ package wework.api;
 
 import org.nutz.ioc.loader.annotation.IocBean;
 
-import wework.AbstractMethods;
-
 /**
  * 自定義菜單管理。
  */

@@ -4,8 +4,6 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
-import wework.AbstractMethods;
-
 @IocBean
 public class TokenMethods  extends AbstractMethods {
 	
