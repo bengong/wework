@@ -17,16 +17,14 @@ public class ApprovalMethods extends AbstractMethods {
 	 * @param access_token 调用接口凭证
 	 * @return
 	 */
-	public Object gettemplatedetail(String access_token, Object data) {
-		String url =  String.format("/oa/gettemplatedetail?access_token=%s", access_token);
-		
+	public Object gettemplatedetail(String access_token, Object data) {		
 //		请求示例
 //		{
 //		   模板的唯一标识id。可在“获取审批单据详情”、“审批状态变化回调通知”中获得，也可在审批模板的模板编辑页面浏览器Url链接中获得。
 //		   "template_id" : "ZLqk8pcsAoXZ1eYa6vpAgfX28MPdYU3ayMaSPHaaa" 
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/oa/gettemplatedetail?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -39,7 +37,6 @@ public class ApprovalMethods extends AbstractMethods {
 	 * @return
 	 */
 	public Object applyevent(String access_token, Object data) {
-		String url =  String.format("/oa/applyevent?access_token=%s", access_token);
 		
 //		请求示例
 //		{
@@ -91,7 +88,7 @@ public class ApprovalMethods extends AbstractMethods {
 //		    ]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/oa/applyevent?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -107,8 +104,6 @@ public class ApprovalMethods extends AbstractMethods {
 	 * @return
 	 */
 	public Object getapprovalinfo(String access_token, Object data) {
-		String url =  String.format("/oa/getapprovalinfo?access_token=%s", access_token);
-		
 //		请求示例
 //		{
 //		    "starttime" : "1569546000",
@@ -135,7 +130,7 @@ public class ApprovalMethods extends AbstractMethods {
 //		    ]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/oa/getapprovalinfo?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -150,13 +145,11 @@ public class ApprovalMethods extends AbstractMethods {
 	 * @return
 	 */
 	public Object getapprovaldetail(String access_token, Object data) {
-		String url =  String.format("/oa/getapprovaldetail?access_token=%s", access_token);
-		
 //		请求示例
 //		{
 //		   "sp_no" : 201909270001 // 审批单编号。
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/oa/getapprovaldetail?access_token=%s", access_token), data);
 	}
 }

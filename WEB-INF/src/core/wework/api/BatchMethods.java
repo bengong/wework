@@ -12,12 +12,13 @@ import org.nutz.mapl.Mapl;
  */
 @IocBean
 public class BatchMethods extends AbstractMethods {
+	
 	/**
 	 * 增量更新成员
 	 * 
 	 * @param access_token
 	 * @param data
-	 * @return
+	 * @return jobid 异步任务id，最大长度为64字节
 	 */
 	public Object syncuser(String access_token, Object data) {
 //		{
@@ -30,10 +31,9 @@ public class BatchMethods extends AbstractMethods {
 //		         "encodingaeskey": "xxx"
 //		    }
 //		}
-		
-		String url = String.format("/batch/syncuser?access_token=%s", access_token);	
-		Object result = postJson(url, data);		
-		return (Integer)Mapl.cell(result, "jobid");// 异步任务id，最大长度为64字节
+			
+		Object result = post(String.format("/batch/syncuser?access_token=%s", access_token), data);		
+		return (Integer)Mapl.cell(result, "jobid");
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class BatchMethods extends AbstractMethods {
 	 * 
 	 * @param access_token
 	 * @param data
-	 * @return
+	 * @return jobid 异步任务id，最大长度为64字节
 	 */
 	public Object replaceuser(String access_token, Object data) {
 //		{
@@ -54,10 +54,9 @@ public class BatchMethods extends AbstractMethods {
 //		         "encodingaeskey": "xxx"
 //		    }
 //		}
-		
-		String url = String.format("/batch/replaceuser?access_token=%s", access_token);	
-		Object result = postJson(url, data);		
-		return (Integer)Mapl.cell(result, "jobid");// 异步任务id，最大长度为64字节
+			
+		Object result = post(String.format("/batch/replaceuser?access_token=%s", access_token), data);		
+		return (Integer)Mapl.cell(result, "jobid");
 	}
 	
 	
@@ -66,7 +65,7 @@ public class BatchMethods extends AbstractMethods {
 	 * 
 	 * @param access_token
 	 * @param data
-	 * @return
+	 * @return jobid 异步任务id，最大长度为64字节
 	 */
 	public Object replaceparty(String access_token, Object data) {
 //		{
@@ -78,10 +77,9 @@ public class BatchMethods extends AbstractMethods {
 //		         "encodingaeskey": "xxx"
 //		    }
 //		}
-		
-		String url = String.format("/batch/replaceparty?access_token=%s", access_token);	
-		Object result = postJson(url, data);		
-		return (Integer)Mapl.cell(result, "jobid");// 异步任务id，最大长度为64字节
+			
+		Object result = post(String.format("/batch/replaceparty?access_token=%s", access_token), data);		
+		return (Integer)Mapl.cell(result, "jobid");
 	}
 	
 	/**
@@ -114,8 +112,7 @@ public class BatchMethods extends AbstractMethods {
 //		                "errmsg":"ok"
 //		           }
 //		       ]
-		
-		String url = String.format("/batch/replaceparty?access_token=%s&jobid=", access_token, jobid);	
-		return get(url);		
+			
+		return get(String.format("/batch/replaceparty?access_token=%s&jobid=", access_token, jobid));		
 	}
 }

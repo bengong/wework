@@ -15,8 +15,7 @@ public class MenuMethods extends AbstractMethods {
 	 * @return
 	 */
 	public Object create(String access_token, String agentid, Object data) {
-		String url =  String.format("/agent/create?access_token=%s&agentid=%s", access_token, agentid);
-		Object result = postJson(url, data);		
+		Object result = post(String.format("/agent/create?access_token=%s&agentid=%s", access_token, agentid), data);		
 		return result;
 	}
 	
@@ -28,8 +27,7 @@ public class MenuMethods extends AbstractMethods {
 	 * @return
 	 */
 	public Object get(String access_token, String agentid) {
-		String url =  String.format("/agent/get?access_token=%s&agentid=%s", access_token, agentid); 
-		return get(url);
+		return get(String.format("/agent/get?access_token=%s&agentid=%s", access_token, agentid));
 	}
 	
 	/**
@@ -38,7 +36,6 @@ public class MenuMethods extends AbstractMethods {
 	 * @param access_token 调用接口凭证
 	 */
 	public Object delete(String access_token, String agentid) {
-		String url =  String.format("/agent/delete?access_token=%s&agentid=%s", access_token, agentid); 
-		return get(url);
+		return get(String.format("/agent/delete?access_token=%s&agentid=%s", access_token, agentid));
 	}
 }

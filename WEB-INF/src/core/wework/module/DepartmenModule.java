@@ -45,7 +45,7 @@ public class DepartmenModule {
 		Mapl.put(data, "name_en", "RDGZ");
 		Mapl.put(data, "parentid", "1");
 		
-		return departmentMethods.create(corpMethods.token(agentid), data);
+		return departmentMethods.create(corpMethods.gettoken(agentid), data);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class DepartmenModule {
 		// Mapl.put(data, "parentid", "");
 		Mapl.put(data, "order", "100000000");
 		
-		return departmentMethods.update(corpMethods.token(agentid), data);
+		return departmentMethods.update(corpMethods.gettoken(agentid), data);
 	}
 	
 	/**
@@ -73,13 +73,13 @@ public class DepartmenModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String id) {	
-		return departmentMethods.delete(corpMethods.token(agentid), id);
+		return departmentMethods.delete(corpMethods.gettoken(agentid), id);
 	}
 	
 	@At({"/list", "/list/?"})
 	public List list(String id) {
 		if(id == null) id = "";
-		List result =  departmentMethods.list(corpMethods.token(agentid), id);
+		List result =  departmentMethods.list(corpMethods.gettoken(agentid), id);
 		
 		return result;
 	}

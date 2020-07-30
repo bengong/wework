@@ -12,9 +12,7 @@ import org.nutz.mapl.Mapl;
 @IocBean
 public class ExternalContactMethods  extends AbstractMethods {
 	
-	public Object remark(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/remark?access_token=%s", access_token);
-		
+	public Object remark(String access_token, Object data) {
 //		{
 //			   "userid":"zhangsan",
 //			   "external_userid":"woAJ2GCAAAd1asdasdjO4wKmE8Aabj9AAA",
@@ -28,18 +26,16 @@ public class ExternalContactMethods  extends AbstractMethods {
 //			   "remark_pic_mediaid":"MEDIAID"
 //			}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/remark?access_token=%s", access_token), data);
 	}
 	
 	
-	public Object get(String access_token, String external_userid) {		
-		String url =  String.format("/externalcontact/get?access_token=%s&external_userid=%s", access_token, external_userid);
-		return get(url);
+	public Object get(String access_token, String external_userid) {
+		return get(String.format("/externalcontact/get?access_token=%s&external_userid=%s", access_token, external_userid));
 	}
 	
-	public Object list(String access_token, String userid) {		
-		String url =  String.format("/externalcontact/list?access_token=%s&userid=%s", access_token, userid);
-		Object result = get(url);
+	public Object list(String access_token, String userid) {
+		Object result = get(String.format("/externalcontact/list?access_token=%s&userid=%s", access_token, userid));
 		List external_userid = (List)Mapl.cell(result, "external_userid");
 		return external_userid;
 	}
@@ -51,9 +47,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object get_corp_tag_list(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/get_corp_tag_list?access_token=%s", access_token);
-		
+	public Object get_corp_tag_list(String access_token, Object data) {	
 //		{
 //		    "tag_id": [
 //		        "etXXXXXXXXXX",
@@ -61,7 +55,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/get_corp_tag_list?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -71,9 +65,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object add_corp_tag(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/add_corp_tag?access_token=%s", access_token);
-		
+	public Object add_corp_tag(String access_token, Object data) {
 //		{
 //		    "group_id": "GROUP_ID",
 //		    "group_name": "GROUP_NAME",
@@ -89,7 +81,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/add_corp_tag?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -99,8 +91,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object edit_corp_tag(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/add_corp_tag?access_token=%s", access_token);
+	public Object edit_corp_tag(String access_token, Object data) {
 		
 //		{
 //		    "group_id": "GROUP_ID",
@@ -117,7 +108,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/add_corp_tag?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -127,8 +118,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object del_corp_tag(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/del_corp_tag?access_token=%s", access_token);
+	public Object del_corp_tag(String access_token, Object data) {
 		
 //		{
 //		    "tag_id": [
@@ -141,7 +131,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    ]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/del_corp_tag?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -153,9 +143,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object mark_tag(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/del_corp_tag?access_token=%s", access_token);
-		
+	public Object mark_tag(String access_token, Object data) {
 //		{
 //		    "userid":"zhangsan",
 //		    "external_userid":"woAJ2GCAAAd1NPGHKSD4wKmE8Aabj9AAA",
@@ -163,7 +151,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    "remove_tag":["TAGID3","TAGID4"]
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/del_corp_tag?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -175,14 +163,12 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object groupchat(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/groupchat?access_token=%s", access_token);
-		
+	public Object groupchat(String access_token, Object data) {
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/groupchat?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -194,14 +180,13 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object send_welcome_msg(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/send_welcome_msg?access_token=%s", access_token);
+	public Object send_welcome_msg(String access_token, Object data) {
 		
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/send_welcome_msg?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -215,14 +200,12 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object add_msg_template(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/add_msg_template?access_token=%s", access_token);
-		
+	public Object add_msg_template(String access_token, Object data) {
 //		{
 //		    "chat_id":"wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA"
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/add_msg_template?access_token=%s", access_token), data);
 	}
 
 	
@@ -233,14 +216,13 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object get_group_msg_result(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/get_group_msg_result?access_token=%s", access_token);
+	public Object get_group_msg_result(String access_token, Object data) {
 		
 //		{
 //		    "msgid": "msgGCAAAXtWyujaWJHDDGi0mACAAAA"
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/get_group_msg_result?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -250,28 +232,25 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object get_unassigned_list(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/get_unassigned_list?access_token=%s", access_token);
+	public Object get_unassigned_list(String access_token, Object data) {
 		
 //		{
 //			  "page_id":0,
 //			  "page_size":100
 //			}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/get_unassigned_list?access_token=%s", access_token), data);
 	}
 	
 	
-	public Object transfer(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/transfer?access_token=%s", access_token);
-		
+	public Object transfer(String access_token, Object data) {
 //		{
 //			   "external_userid": "woAJ2GCAAAXtWyujaWJHDDGi0mACAAAA",
 //			   "handover_userid": "zhangsan",
 //			   "takeover_userid": "lisi"
 //			}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/transfer?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -281,9 +260,7 @@ public class ExternalContactMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object get_user_behavior_data(String access_token, Object data) {		
-		String url =  String.format("/externalcontact/get_user_behavior_data?access_token=%s", access_token);
-		
+	public Object get_user_behavior_data(String access_token, Object data) {
 //		{
 //		    "userid": [
 //		        "zhangsan",
@@ -298,6 +275,6 @@ public class ExternalContactMethods  extends AbstractMethods {
 //		    "end_time":1536940800
 //		}
 		
-		return postJson(url, data);
+		return post(String.format("/externalcontact/get_user_behavior_data?access_token=%s", access_token), data);
 	}
 }

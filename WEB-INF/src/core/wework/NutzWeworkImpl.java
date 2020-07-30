@@ -1,6 +1,7 @@
 package wework;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.nutz.http.Header;
@@ -23,24 +24,32 @@ public class NutzWeworkImpl implements Wework {
 	 */
 	private static final long serialVersionUID = -9220340149800920348L;
 
-		
-	public String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
+	/**
+	 * 公司标识。
+	 */
+	protected String corpid;	
+	/**
+	 * 其他应用。
+	 */
+	protected Map<String, Object> agents = new HashMap<String, Object>();
+
+	protected String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
 	
 	protected int Default_timeout = 60*1000;
 	
 	protected Log log = Logs.get();
 	
-	public final Object get(String url) {
+	public Object get(String url) {
 		log.info(url);		
 		return result(Http.get(server_url+url, Default_timeout));
     }
 	
-	public final Object get(String url, Map<String, Object> params) {
+	public Object get(String url, Map<String, Object> params) {
 		return result(Http.get(server_url+url, params, Default_timeout));
     }
 	
-	public final Object postJson(String url, Object data) {		
-        return postJson(url, data, Default_timeout);
+	public Object post(String url, Object data) {		
+        return post(url, data, Default_timeout);
     }
 	
 	/**
@@ -51,7 +60,7 @@ public class NutzWeworkImpl implements Wework {
 	 * @param timeout
 	 * @return
 	 */
-    public final Object postJson(String url, Object data, int timeout) {
+    public Object post(String url, Object data, int timeout) {
         Request req = Request.create(server_url+url, METHOD.POST);
         req.getHeader().set("Content-Type", "application/json");
         req.setData(Json.toJson(data));       
@@ -66,11 +75,11 @@ public class NutzWeworkImpl implements Wework {
      * @param header
      * @return
      */
-    public final Object upload(String url, Map<String, Object> params, Header header) {
+    public Object upload(String url, Map<String, Object> params, Header header) {
     	return result(Http.upload(server_url+url, params, header, Default_timeout));
     }
     
-    public final InputStream download(String url) {
+    public InputStream download(String url) {
     	return Http.get(server_url+url, Default_timeout).getStream();
     }
     
@@ -80,7 +89,7 @@ public class NutzWeworkImpl implements Wework {
      * @param response
      * @return
      */
-    private final Object result(Response response) {
+    private Object result(Response response) {
     	
     	if(response.isServerError()) {
     		throw new WeException("服务端出错 "+response.getStatus() + response.getDetail());
@@ -109,5 +118,15 @@ public class NutzWeworkImpl implements Wework {
     	
     	return result;
     }
+
+	@Override
+	public String corpid() {
+		return this.corpid;
+	}
+
+	@Override
+	public Object agent(String agentid) {
+		return this.agents.get(agentid);
+	}
 
 }

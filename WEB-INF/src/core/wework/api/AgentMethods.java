@@ -16,8 +16,7 @@ public class AgentMethods extends AbstractMethods {
 	 * @return
 	 */
 	public Object get(String access_token, String agentid) {
-		String url =  String.format("/agent/get?access_token=%s&agentid=%s", access_token, agentid); 
-		return get(url);
+		return get(String.format("/agent/get?access_token=%s&agentid=%s", access_token, agentid));
 	}
 	
 	/**
@@ -27,10 +26,8 @@ public class AgentMethods extends AbstractMethods {
 	 * @param data 
 	 * @return
 	 */
-	public Object set(String access_token, Object data) {		
-		String url =  String.format("/agent/get?access_token=%s", access_token);
-		Object result = postJson(url, data);		
-		return result;
+	public Object set(String access_token, Object data) {
+		return post(String.format("/agent/get?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -38,8 +35,7 @@ public class AgentMethods extends AbstractMethods {
 	 * 
 	 * @param access_token 调用接口凭证
 	 */
-	public Object list(String access_token) {		
-		String url =  String.format("/agent/list?access_token=%s", access_token);		
-		return get(url);
+	public Object list(String access_token) {
+		return get(String.format("/agent/list?access_token=%s", access_token));
 	}
 }

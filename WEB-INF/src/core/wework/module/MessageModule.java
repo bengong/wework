@@ -42,7 +42,7 @@ public class MessageModule {
 		Mapl.put(data, "department", "[1, 2]");
 		Mapl.put(data, "order", "[10,40]");
 		
-		return messageMethods.send(corpMethods.token(agentid), data);
+		return messageMethods.send(corpMethods.gettoken(agentid), data);
 	}
 	
 	
@@ -91,7 +91,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.token(agentid), data);
+		return messageMethods.send(corpMethods.gettoken(agentid), data);
 	}
 	
 	@At("/image/?/?")
@@ -131,7 +131,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.token(agentid), data);
+		return messageMethods.send(corpMethods.gettoken(agentid), data);
 	}
 
 	@At("/voice/?/?")
@@ -169,7 +169,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.token(agentid), data);
+		return messageMethods.send(corpMethods.gettoken(agentid), data);
 	}
 
 	/**
@@ -222,6 +222,6 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return messageMethods.send(corpMethods.token(agentid), data);
+		return messageMethods.send(corpMethods.gettoken(agentid), data);
 	}
 }

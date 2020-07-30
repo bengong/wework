@@ -23,10 +23,8 @@ public class DepartmentMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Integer create(String access_token, Object data) {		
-		String url = String.format("/department/create?access_token=%s", access_token);	
-		Object result = postJson(url, data);	
-		
+	public Integer create(String access_token, Object data) {
+		Object result = post(String.format("/department/create?access_token=%s", access_token), data);		
 		return (Integer)Mapl.cell(result, "id");
 	}
 	
@@ -37,9 +35,7 @@ public class DepartmentMethods  extends AbstractMethods {
 	 * @param data
 	 */
 	public Object update(String access_token, Object data) {		
-		String url = String.format("/department/update?access_token=%s", access_token);
-		
-		return postJson(url, data);
+		return post(String.format("/department/update?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -48,9 +44,8 @@ public class DepartmentMethods  extends AbstractMethods {
 	 * @param access_token
 	 * @param id
 	 */
-	public Object delete(String access_token, String id) {		
-		String url = String.format("/department/delete?access_token=%s&id=%s", access_token, id);		
-		return get(url);
+	public Object delete(String access_token, String id) {
+		return get(String.format("/department/delete?access_token=%s&id=%s", access_token, id));
 	}
 	
 	/**
@@ -60,11 +55,8 @@ public class DepartmentMethods  extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public List list(String access_token, String id) {		
-		String url =  String.format("/department/list?access_token=%s&id=%s", access_token, id);
-		Object result = get(url);
-		
-		List departments = (List)Mapl.cell(result, "department");
-		return departments;
+	public List list(String access_token, String id) {
+		Object result = get(String.format("/department/list?access_token=%s&id=%s", access_token, id));
+		return (List)Mapl.cell(result, "department");
 	}
 }

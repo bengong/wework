@@ -83,7 +83,7 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.title", "my miniprogram");
 		
-		return userMethods.create(corpMethods.token(agentid), data);
+		return userMethods.create(corpMethods.gettoken(agentid), data);
 	}
 	
 	/**
@@ -143,12 +143,12 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.title", "my miniprogram");
 		
-		return userMethods.update(corpMethods.token(agentid), data);
+		return userMethods.update(corpMethods.gettoken(agentid), data);
 	}
 
 	@At({"/get/?"})
 	public Object get(String userid) {	
-		return userMethods.get(corpMethods.token(agentid), userid);
+		return userMethods.get(corpMethods.gettoken(agentid), userid);
 	}
 	
 	/**
@@ -159,20 +159,20 @@ public class UserModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String userid) {	
-		return userMethods.delete(corpMethods.token(agentid), userid);
+		return userMethods.delete(corpMethods.gettoken(agentid), userid);
 	}
 	
 	
 	@At({"/simplelist/?/?"})
 	public List simplelist(String department_id, String fetch_child) {
-		List result =  userMethods.simplelist(corpMethods.token(agentid), department_id, fetch_child);
+		List result =  userMethods.simplelist(corpMethods.gettoken(agentid), department_id, fetch_child);
 		
 		return result;
 	}
 	
 	@At({"/list/?/?"})
 	public List list(String department_id, String fetch_child) {
-		List result =  userMethods.list(corpMethods.token(agentid), department_id, fetch_child);
+		List result =  userMethods.list(corpMethods.gettoken(agentid), department_id, fetch_child);
 		
 		return result;
 	}

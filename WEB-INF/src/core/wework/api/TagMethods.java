@@ -26,9 +26,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Integer create(String access_token, Object data) {		
-		String url = String.format("/tag/create?access_token=%s", access_token);	
-		Object result = postJson(url, data);		
+	public Integer create(String access_token, Object data) {
+		Object result = post(String.format("/tag/create?access_token=%s", access_token), data);		
 		return (Integer)Mapl.cell(result, "tagid");
 	}
 	
@@ -38,10 +37,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param access_token
 	 * @param data
 	 */
-	public Object update(String access_token, Object data) {		
-		String url = String.format("/tag/update?access_token=%s", access_token);
-		
-		return postJson(url, data);
+	public Object update(String access_token, Object data) {
+		return post(String.format("/tag/update?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -50,9 +47,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param access_token
 	 * @param tagid
 	 */
-	public Object delete(String access_token, String tagid) {		
-		String url = String.format("/tag/delete?access_token=%s&tagid=%s", access_token, tagid);		
-		return get(url);
+	public Object delete(String access_token, String tagid) {
+		return get(String.format("/tag/delete?access_token=%s&tagid=%s", access_token, tagid));
 	}
 
 	/**
@@ -62,9 +58,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param tagid
 	 * @return
 	 */
-	public Object get(String access_token, String tagid) {		
-		String url =  String.format("/tag/get?access_token=%s&tagid=%s", access_token, tagid);
-		return get(url);
+	public Object get(String access_token, String tagid) {
+		return get(String.format("/tag/get?access_token=%s&tagid=%s", access_token, tagid));
 	}
 	
 	/**
@@ -74,10 +69,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object addtagusers(String access_token, Object data) {		
-		String url = String.format("/tag/addtagusers?access_token=%s", access_token);
-		
-		return postJson(url, data);
+	public Object addtagusers(String access_token, Object data) {
+		return post(String.format("/tag/addtagusers?access_token=%s", access_token), data);
 	}
 	
 	/**
@@ -87,10 +80,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param data
 	 * @return
 	 */
-	public Object deltagusers(String access_token, Object data) {		
-		String url = String.format("/tag/deltagusers?access_token=%s", access_token);
-		
-		return postJson(url, data);
+	public Object deltagusers(String access_token, Object data) {
+		return post(String.format("/tag/deltagusers?access_token=%s", access_token), data);
 	}
 	
 	
@@ -101,10 +92,8 @@ public class TagMethods extends AbstractMethods {
 	 * @param access_token 调用接口凭证
 	 * @return taglist
 	 */
-	public List list(String access_token, String department_id, String fetch_child) {		
-		String url =  String.format("/tag/list?access_token=%s", access_token);
-		Object result = get(url);
-		List taglist = (List)Mapl.cell(result, "taglist");
-		return taglist;
+	public List list(String access_token, String department_id, String fetch_child) {
+		Object result = get(String.format("/tag/list?access_token=%s", access_token));
+		return (List)Mapl.cell(result, "taglist");
 	}
 }

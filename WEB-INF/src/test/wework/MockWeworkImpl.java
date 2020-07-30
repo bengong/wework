@@ -9,7 +9,7 @@ import org.nutz.lang.Files;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
-public class MockWeworkImpl implements MockWework {
+public class MockWeworkImpl extends NutzWeworkImpl implements MockWework {
 	
 	/**
 	 * serialVersionUID
@@ -28,7 +28,7 @@ public class MockWeworkImpl implements MockWework {
 		return Json.fromJson(Files.read(mock_file));
     }
 	
-	public Object postJson(String url, Object data) {
+	public Object post(String url, Object data) {
 		return Json.fromJson(Files.read(mock_file));
     }
 	
@@ -39,7 +39,7 @@ public class MockWeworkImpl implements MockWework {
 	 * @param timeout
 	 * @return
 	 */
-    public Object postJson(String url, Object data, int timeout) {
+    public Object post(String url, Object data, int timeout) {
     	return Json.fromJson(Files.read(mock_file));
     }
     /**
