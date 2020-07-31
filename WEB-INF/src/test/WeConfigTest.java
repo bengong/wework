@@ -2,7 +2,7 @@ import org.nutz.json.Json;
 import org.nutz.lang.Files;
 import org.nutz.lang.util.NutMap;
 
-import wework.Config;
+import wework.domain.Config;
 
 public class WeConfigTest {
 

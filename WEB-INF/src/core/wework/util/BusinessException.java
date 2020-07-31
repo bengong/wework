@@ -1,4 +1,4 @@
-package wework;
+package wework.util;
 
 /**
  * 业务异常。

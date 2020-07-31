@@ -1,4 +1,4 @@
-package wework;
+package wework.domain;
 
 import java.util.HashMap;
 import java.util.Map;

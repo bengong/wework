@@ -20,6 +20,31 @@ public class BatchMethods extends AbstractMethods {
 	public BatchMethods(String agentid) {
 		super(agentid);
 	}
+	
+	/**
+	 * 邀请成员
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public Object invite(Object data) {
+//		{
+//		   "user" : ["UserID1", "UserID2", "UserID3"],
+//		   "party" : [PartyID1, PartyID2],
+//		   "tag" : [TagID1, TagID2]
+//		}
+		
+		
+//		 {
+//		   "errcode" : 0,
+//		   "errmsg" : "ok",
+//		   "invaliduser" : ["UserID1", "UserID2"],
+//		   "invalidparty" : [PartyID1, PartyID2],
+//		   "invalidtag": [TagID1, TagID2]
+//		 }
+		
+		return post(String.format("/batch/invite?access_token=%s", gettoken()), data);
+	}
 
 	/**
 	 * 增量更新成员

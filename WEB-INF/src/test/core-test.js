@@ -1,6 +1,6 @@
 var ioc = {
 		config : {
-	        type : 'wework.Config', // 配置文件
+	        type : 'wework.domain.Config', // 配置文件
 	        singleton : true,
 	        fields : {
         	   "corpid": "xxxx1a491e1639ecd6",

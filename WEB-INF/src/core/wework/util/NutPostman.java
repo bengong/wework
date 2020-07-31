@@ -15,8 +15,6 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
-import wework.BusinessException;
-
 @IocBean(name="postman")
 public class NutPostman implements Postman {
 	
@@ -88,9 +86,11 @@ public class NutPostman implements Postman {
     	    	
     	String content = response.getContent();
     	
-    	log.info(Json.toJson(response));
+    	log.info(Json.toJson(response.getHeader()));    	
     	
     	Object result = Json.fromJson(content);
+    	
+    	
     	if(result != null) {
     		Integer errcode =  (Integer)Mapl.cell(result, "errcode");
     		String errmsg =  (String)Mapl.cell(result, "errmsg");
@@ -99,6 +99,7 @@ public class NutPostman implements Postman {
     		}
     	}
     	
+    	log.info(Json.toJson(result));
     	return result;
     }
 

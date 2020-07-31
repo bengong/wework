@@ -9,8 +9,8 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
-import wework.BusinessException;
-import wework.Config;
+import wework.domain.Config;
+import wework.util.BusinessException;
 import wework.util.NutPostman;
 import wework.util.Postman;
 
@@ -137,5 +137,29 @@ public abstract class AbstractMethods {
 	 */
 	protected Object gettoken(String corpid, String secret) {
 		return get(String.format("/gettoken?corpid=%s&corpsecret=%s", corpid, secret));
-	}	
+	}
+	
+	/**
+	 * 获取企业微信API域名IP段
+	 * 
+	 * API域名IP即qyapi.weixin.qq.com的解析地址，由开发者调用企业微信侧的接入IP。如果企业需要做防火墙配置，那么可以通过这个接口获取到所有相关的IP段。
+	 * IP段有变更可能，当IP段变更时，新旧IP段会同时保留一段时间。建议企业每天定时拉取IP段，更新防火墙设置，避免因IP段变更导致网络不通。
+	 * 
+	 * @param access_token
+	 * @return
+	 */
+	protected Object get_api_domain_ip(String access_token) {
+		
+//		{
+//		    "ip_list":[
+//		        "182.254.11.176",
+//		        "182.254.78.66"
+//		    ],
+//		    "errcode":0,
+//		    "errmsg":"ok"
+//		}
+		
+		return get(String.format("/get_api_domain_ip?access_token=%s", access_token));
+	}
+	
 }
