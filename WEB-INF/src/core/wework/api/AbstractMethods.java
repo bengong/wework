@@ -9,18 +9,20 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
-import wework.WeConfig;
-import wework.WeException;
+import wework.BusinessException;
+import wework.Config;
+import wework.util.NutPostman;
+import wework.util.Postman;
 
 public abstract class AbstractMethods {
 	@Inject
-	protected WeConfig weConfig;
-
+	public Config config;
+	@Inject
+	public Postman postman = new NutPostman();
+	
 	protected String server_url = "https://qyapi.weixin.qq.com/cgi-bin";
 	
-	protected int Default_timeout = 60*1000;
-	
-	protected String agentid;// 通讯录
+	protected String agentid;
 	
 	protected Log log = Logs.get();
 	
@@ -31,31 +33,17 @@ public abstract class AbstractMethods {
 		this.agentid = agentid;
 	}
 	
-	/**
-	 * GET
-	 * 
-	 * @param url
-	 * @return
-	 */
-	public abstract Object get(String url);
+	protected Object get(String url) {
+		return  postman.get(server_url+url);
+    }
 	
-	/**
-	 * GET
-	 * 
-	 * @param url
-	 * @param params
-	 * @return
-	 */
-	public abstract Object get(String url, Map<String, Object> params);
+	protected Object get(String url, Map<String, Object> params) {
+		return postman.get(server_url+url, params);
+    }
 	
-	/**
-	 * POST。
-	 * 
-	 * @param url
-	 * @param data
-	 * @return
-	 */
-	public abstract Object post(String url, Object data);
+	protected Object post(String url, Object data) {		
+        return postman.post(server_url+url, data);
+    }
 	
 	/**
 	 * 将数据对象转换成json后，post出去。
@@ -65,7 +53,9 @@ public abstract class AbstractMethods {
 	 * @param timeout
 	 * @return
 	 */
-    public abstract Object post(String url, Object data, int timeout);
+	protected Object post(String url, Object data, int timeout) {
+        return postman.post(server_url+url, data);
+    }    
     
     /**
      * 上传文件。
@@ -75,24 +65,13 @@ public abstract class AbstractMethods {
      * @param header
      * @return
      */
-    public abstract Object upload(String url, Map<String, Object> params, Header header);
-    
-    /**
-     * 下载。
-     * 
-     * @param url
-     * @return
-     */
-    public abstract InputStream download(String url);
-    
-    /**
-     * 获取公司主键。
-     * 
-     * @return corpid
-     */
-    public String corpid() {
-    	return weConfig.corpid;
+    protected Object upload(String url, Map<String, Object> params, Header header) {
+    	return postman.upload(server_url+url, params, header);
     }
+    
+    protected InputStream download(String url) {
+    	return postman.download(server_url+url);
+    }    
     
     /**
      * 获取应用。
@@ -100,11 +79,11 @@ public abstract class AbstractMethods {
      * @param agentid
      * @return agent
      */
-    public Object agent(String agentid) {
-    	return weConfig.agents.get(agentid);
+    protected Object agent(String agentid) {
+    	return config.agents.get(agentid);
     }
 	
-	public String gettoken() {
+    public String gettoken() {
 		return gettoken(agentid);
 	}
 	
@@ -116,9 +95,10 @@ public abstract class AbstractMethods {
 	 * @return access_token
 	 */
 	public String gettoken(String agentid) {
-		Object agent = agent("agent_"+agentid);
+		Object agent = agent(agentid);
+		// 不存在的应用。
 		if(agent == null) {
-			throw new WeException(String.format("%s 对应的应用不存在", agentid));
+			throw new BusinessException(String.format("%s 对应的应用不存在", agentid));
 		}
 		
 		String secret = (String)Mapl.cell(agent, "secret");		
@@ -129,7 +109,7 @@ public abstract class AbstractMethods {
 		long now = System.currentTimeMillis();
 		// 如果超时，则重新获取。
 		if(access_token == null || (access_time > 0 && now-access_time >= expires_in- 10*1000)) {
-			Object result = gettoken(corpid(), secret);			
+			Object result = gettoken(config.corpid, secret);			
 			now = System.currentTimeMillis();
 			if(result != null) {
 				access_time = now;

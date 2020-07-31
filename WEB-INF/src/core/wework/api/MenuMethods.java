@@ -5,8 +5,8 @@ import org.nutz.ioc.loader.annotation.IocBean;
 /**
  * 自定義菜單管理。
  */
-@IocBean
-public class MenuMethods extends NutzMethods {
+@IocBean(name="menu")
+public class MenuMethods extends AbstractMethods {
 	
 	public MenuMethods() {
 		super();

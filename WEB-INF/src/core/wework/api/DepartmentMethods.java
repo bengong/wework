@@ -7,8 +7,8 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
-@IocBean
-public class DepartmentMethods  extends NutzMethods {
+@IocBean(name="department")
+public class DepartmentMethods  extends AbstractMethods {
 	
 	Log log = Logs.get();
 

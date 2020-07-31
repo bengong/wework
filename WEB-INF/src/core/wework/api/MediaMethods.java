@@ -9,8 +9,8 @@ import org.nutz.ioc.loader.annotation.IocBean;
 /**
  * 素材管理。
  */
-@IocBean
-public class MediaMethods extends NutzMethods {	
+@IocBean(name="media")
+public class MediaMethods extends AbstractMethods {	
 	
 	public MediaMethods() {
 		super();

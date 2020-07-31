@@ -5,8 +5,8 @@ import org.nutz.ioc.loader.annotation.IocBean;
 /**
  * 消息管理。
  */
-@IocBean
-public class MessageMethods extends NutzMethods {
+@IocBean(name="message")
+public class MessageMethods extends AbstractMethods {
 	
 	public MessageMethods() {
 		super();

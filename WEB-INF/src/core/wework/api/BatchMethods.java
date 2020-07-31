@@ -10,8 +10,8 @@ import org.nutz.mapl.Mapl;
  * 执行完成后，企业微信后台会通过任务事件通知企业获取结果。事件的内容是加密的，解密过程请参考 [消息的加解密处理][signure]，任务事件请参考异步任务完成事件推送。
  * 目前，仅为通讯录更新提供了异步批量接口</p>
  */
-@IocBean
-public class BatchMethods extends NutzMethods {
+@IocBean(name="batch")
+public class BatchMethods extends AbstractMethods {
 	
 	public BatchMethods() {
 		super();

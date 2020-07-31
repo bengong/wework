@@ -8,8 +8,8 @@ import org.nutz.mapl.Mapl;
 /**
  * 成員服務。
  */
-@IocBean
-public class UserMethods  extends NutzMethods {
+@IocBean(name="user")
+public class UserMethods  extends AbstractMethods {
 	
 	public UserMethods() {
 		super();

@@ -2,8 +2,8 @@ package wework.api;
 
 import org.nutz.ioc.loader.annotation.IocBean;
 
-@IocBean
-public class SuiteMethods extends NutzMethods {
+@IocBean(name="suite")
+public class SuiteMethods extends AbstractMethods {
 	
 	public SuiteMethods() {
 		super();

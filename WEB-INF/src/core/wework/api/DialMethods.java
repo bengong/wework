@@ -5,8 +5,8 @@ import org.nutz.ioc.loader.annotation.IocBean;
 /**
  * 企业微信公费电话。
  */
-@IocBean
-public class DialMethods extends NutzMethods {
+@IocBean(name="dial")
+public class DialMethods extends AbstractMethods {
 	
 	public DialMethods() {
 		super();

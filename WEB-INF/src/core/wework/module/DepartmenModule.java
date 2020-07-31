@@ -12,8 +12,7 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.WeWork;
-import wework.api.DepartmentMethods;
+import wework.Wework;
 
 /**
  * 部门。
@@ -24,7 +23,7 @@ import wework.api.DepartmentMethods;
 public class DepartmenModule {
 	
 	@Inject
-	WeWork weWork;
+	Wework wework;
 	
 	Log log = Logs.get();
 	
@@ -40,7 +39,7 @@ public class DepartmenModule {
 		Mapl.put(data, "name_en", "RDGZ");
 		Mapl.put(data, "parentid", "1");
 		
-		return weWork.departmentMethods.create(data);
+		return wework.department.create(data);
 	}
 	
 	/**
@@ -57,7 +56,7 @@ public class DepartmenModule {
 		// Mapl.put(data, "parentid", "");
 		Mapl.put(data, "order", "100000000");
 		
-		return weWork.departmentMethods.update(data);
+		return wework.department.update(data);
 	}
 	
 	/**
@@ -68,13 +67,13 @@ public class DepartmenModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String id) {	
-		return weWork.departmentMethods.delete(id);
+		return wework.department.delete(id);
 	}
 	
 	@At({"/list", "/list/?"})
 	public List list(String id) {
 		if(id == null) id = "";
-		List result =  weWork.departmentMethods.list(id);
+		List result =  wework.department.list(id);
 		
 		return result;
 	}

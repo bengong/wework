@@ -5,8 +5,8 @@ import org.nutz.ioc.loader.annotation.IocBean;
 /**
  * 打卡管理。
  */
-@IocBean
-public class CheckinMethods extends NutzMethods {
+@IocBean(name="checkin")
+public class CheckinMethods extends AbstractMethods {
 	
 	public CheckinMethods() {
 		super();

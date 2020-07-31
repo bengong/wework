@@ -9,8 +9,7 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
-import wework.WeWork;
-import wework.api.MessageMethods;
+import wework.Wework;
 
 /**
  * 消息管理。
@@ -19,7 +18,7 @@ import wework.api.MessageMethods;
 @At("message")
 public class MessageModule {
 	@Inject
-	WeWork weWork;
+	Wework wework;
 	
 	Log log = Logs.get();
 	
@@ -39,7 +38,7 @@ public class MessageModule {
 		Mapl.put(data, "department", "[1, 2]");
 		Mapl.put(data, "order", "[10,40]");
 		
-		return weWork.messageMethods.send(agentid, data);
+		return wework.message.send(agentid, data);
 	}
 	
 	
@@ -88,7 +87,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return weWork.messageMethods.send(agentid, data);
+		return wework.message.send(agentid, data);
 	}
 	
 	@At("/image/?/?")
@@ -128,7 +127,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return weWork.messageMethods.send(agentid, data);
+		return wework.message.send(agentid, data);
 	}
 
 	@At("/voice/?/?")
@@ -166,7 +165,7 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return weWork.messageMethods.send(agentid, data);
+		return wework.message.send(agentid, data);
 	}
 
 	/**
@@ -219,6 +218,6 @@ public class MessageModule {
 
 		log.info(Json.toJson(data));
 		
-		return weWork.messageMethods.send(agentid, data);
+		return wework.message.send(agentid, data);
 	}
 }

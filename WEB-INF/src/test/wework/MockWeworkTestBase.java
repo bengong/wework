@@ -7,12 +7,11 @@ import org.nutz.ioc.loader.combo.ComboIocLoader;
 
 public abstract class MockWeworkTestBase {
 
-	public static Ioc ioc;
-	public WeWork weWork;
+	public Ioc ioc;
+	public Wework wework;
 	@Before
 	public void setUp() throws Exception {		
         ioc = new NutIoc(new ComboIocLoader("*org.nutz.ioc.loader.json.JsonLoader", "core-test.js", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "wework"));
-        weWork = ioc.get(WeWork.class);
-        System.out.println(weWork.agentMethods.corpid());
+        wework = ioc.get(Wework.class);
 	}
 }

@@ -10,8 +10,8 @@ import org.nutz.mapl.Mapl;
 /**
  * 
  */
-@IocBean
-public class TagMethods extends NutzMethods {
+@IocBean(name="tag")
+public class TagMethods extends AbstractMethods {
 	
 	Log log = Logs.get();
 

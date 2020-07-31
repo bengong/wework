@@ -12,13 +12,19 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 
+import wework.Wework;
 import wework.api.UserMethods;
 
+/**
+ * 成员。
+ */
 @IocBean
 @At("user")
 public class UserModule {
 	@Inject
-	UserMethods userMethods;
+	Wework wework;
+	@Inject
+	UserMethods user;
 	
 	Log log = Logs.get();
 	
@@ -76,7 +82,7 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr[" + i + "].miniprogram.title", "my miniprogram");
 		
-		return userMethods.create(data);
+		return wework.user.create(data);
 	}
 	
 	/**
@@ -136,12 +142,12 @@ public class UserModule {
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.pagepath", "/index");
 		Mapl.put(data, "external_profile.external_profile.external_attr["+i+"].miniprogram.title", "my miniprogram");
 		
-		return userMethods.update(data);
+		return wework.user.update(data);
 	}
 
 	@At({"/get/?"})
 	public Object get(String userid) {	
-		return userMethods.get(userid);
+		return wework.user.get(userid);
 	}
 	
 	/**
@@ -152,21 +158,17 @@ public class UserModule {
 	 */
 	@At({"/delete/?"})
 	public Object delete(String userid) {	
-		return userMethods.delete(userid);
+		return wework.user.delete(userid);
 	}
 	
 	
 	@At({"/simplelist/?/?"})
 	public List simplelist(String department_id, String fetch_child) {
-		List result =  userMethods.simplelist(department_id, fetch_child);
-		
-		return result;
+		return  wework.user.simplelist(department_id, fetch_child);
 	}
 	
 	@At({"/list/?/?"})
 	public List list(String department_id, String fetch_child) {
-		List result =  userMethods.list(department_id, fetch_child);
-		
-		return result;
+		return  wework.user.list(department_id, fetch_child);
 	}
 }

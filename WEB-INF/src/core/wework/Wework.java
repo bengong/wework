@@ -17,32 +17,32 @@ import wework.api.SuiteMethods;
 import wework.api.TagMethods;
 import wework.api.UserMethods;
 
-@IocBean
-public class WeWork {
+@IocBean(name="wework")
+public class Wework {
 	@Inject
-	public AgentMethods agentMethods;
+	public AgentMethods agent;
 	@Inject
-	public ApprovalMethods approvalMethods;
+	public ApprovalMethods approval;
 	@Inject
-	public BatchMethods batchMethods;
+	public BatchMethods batch;
 	@Inject
-	public CheckinMethods checkinMethods;
+	public CheckinMethods checkin;
 	@Inject
-	public DepartmentMethods departmentMethods;
+	public DepartmentMethods department;
 	@Inject
-	public DialMethods dialMethods;
+	public DialMethods dial;
 	@Inject
-	public ExternalContactMethods externalContactMethods;
+	public ExternalContactMethods externalcontact;
 	@Inject
-	public MediaMethods mediaMethods;
+	public MediaMethods media;
 	@Inject
-	public MenuMethods menuMethods;
+	public MenuMethods menu;
 	@Inject
-	public MessageMethods messageMethods;
+	public MessageMethods message;
 	@Inject
-	public SuiteMethods suiteMethods;
+	public SuiteMethods suite;
 	@Inject
-	public TagMethods tagMethods;
+	public TagMethods tag;
 	@Inject
-	public UserMethods userMethods;
+	public UserMethods user;
 }

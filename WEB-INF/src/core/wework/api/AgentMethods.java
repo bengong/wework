@@ -3,10 +3,10 @@ package wework.api;
 import org.nutz.ioc.loader.annotation.IocBean;
 
 /**
- * 审批。
+ * 應用。
  */
-@IocBean
-public class AgentMethods extends NutzMethods {
+@IocBean(name="agent")
+public class AgentMethods extends AbstractMethods {
 
 	public AgentMethods() {
 		super();

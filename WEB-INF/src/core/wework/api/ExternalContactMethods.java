@@ -9,8 +9,8 @@ import org.nutz.mapl.Mapl;
  * 外部联系人。
  *
  */
-@IocBean
-public class ExternalContactMethods  extends NutzMethods {
+@IocBean(name="externalcontact")
+public class ExternalContactMethods  extends AbstractMethods {
 	
 	public ExternalContactMethods() {
 		super();

@@ -11,7 +11,7 @@ import org.nutz.log.Logs;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 
-import wework.WeWork;
+import wework.Wework;
 
 /**
  * 媒体素材。
@@ -20,7 +20,7 @@ import wework.WeWork;
 @At("media")
 public class MediaModule {
 	@Inject
-	WeWork weWork;
+	Wework wework;
 
 	Log log = Logs.get();
 	
@@ -38,7 +38,7 @@ public class MediaModule {
 		NutMap data = new NutMap();
 		data.put(file.getName(), file);
 		
-		Object result = weWork.mediaMethods.upload(type, data);
+		Object result = wework.media.upload(type, data);
 		
 //		返回值样例
 //		{
@@ -67,7 +67,7 @@ public class MediaModule {
 		NutMap data = new NutMap();
 		data.put(file.getName(), file);
 		
-		Object result =  weWork.mediaMethods.uploadimg(data);
+		Object result =  wework.media.uploadimg(data);
 
 //		返回值样例
 //		{
@@ -93,7 +93,7 @@ public class MediaModule {
 		// 375SQwdxk3pYWdEDjagCkdEMeiMEBG5Rl9peCWIF6Em708nj24gOgPHP1FadubrSk
 		// 3avuTt1i9bZtlmYJlAdrb3q6D0mO6AeVjDRyZgbJhkKc
 
-		return weWork.mediaMethods.download(media_id);		
+		return wework.media.download(media_id);		
 	}
 	
 	/**
@@ -106,6 +106,6 @@ public class MediaModule {
 	@At("/downloadvoice/?/?")
 	@Ok("raw:file")
 	public Object downloadVoice(String agentid, String media_id) {
-		return weWork.mediaMethods.downloadVoice(media_id);
+		return wework.media.downloadVoice(media_id);
 	}
 }

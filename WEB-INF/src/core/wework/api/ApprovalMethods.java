@@ -3,10 +3,10 @@ package wework.api;
 import org.nutz.ioc.loader.annotation.IocBean;
 
 /**
- * 应用管理。
+ * 審批
  */
-@IocBean
-public class ApprovalMethods extends NutzMethods {
+@IocBean(name="approval")
+public class ApprovalMethods extends AbstractMethods {
 
 	public ApprovalMethods() {
 		super();
