@@ -167,7 +167,7 @@ public class UserMethods  extends AbstractMethods {
 	 * @return
 	 */
 	public Object getuserinfo(String agentid, String code) {
-		Object result = get(String.format("/user/getuserinfo?access_token=%s&userid=%s", gettoken(agentid), code));
+		Object result = get(String.format("/user/getuserinfo?access_token=%s&code=%s", gettoken(agentid), code));
 		
 //		{
 //		   "errcode": 0,
