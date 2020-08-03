@@ -33,15 +33,15 @@ public abstract class AbstractMethods {
 		this.agentid = agentid;
 	}
 	
-	protected Object get(String url) {
+	protected final Object get(String url) {
 		return  postman.get(server_url+url);
     }
 	
-	protected Object get(String url, Map<String, Object> params) {
+	protected final Object get(String url, Map<String, Object> params) {
 		return postman.get(server_url+url, params);
     }
 	
-	protected Object post(String url, Object data) {		
+	protected final Object post(String url, Object data) {		
         return postman.post(server_url+url, data);
     }
 	
@@ -53,7 +53,7 @@ public abstract class AbstractMethods {
 	 * @param timeout
 	 * @return
 	 */
-	protected Object post(String url, Object data, int timeout) {
+	protected final Object post(String url, Object data, int timeout) {
         return postman.post(server_url+url, data);
     }    
     
@@ -65,11 +65,11 @@ public abstract class AbstractMethods {
      * @param header
      * @return
      */
-    protected Object upload(String url, Map<String, Object> params, Header header) {
+    protected final Object upload(String url, Map<String, Object> params, Header header) {
     	return postman.upload(server_url+url, params, header);
     }
     
-    protected InputStream download(String url) {
+    protected final InputStream download(String url) {
     	return postman.download(server_url+url);
     }    
     

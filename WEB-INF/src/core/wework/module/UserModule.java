@@ -146,8 +146,8 @@ public class UserModule {
 	}
 
 	@At({"/get/?"})
-	public Object get(String userid) {	
-		return wework.user.get(userid);
+	public Object getuserinfo(String userid) {	
+		return wework.user.getuserinfo(userid);
 	}
 	
 	/**

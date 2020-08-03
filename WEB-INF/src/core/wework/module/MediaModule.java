@@ -93,7 +93,7 @@ public class MediaModule {
 		// 375SQwdxk3pYWdEDjagCkdEMeiMEBG5Rl9peCWIF6Em708nj24gOgPHP1FadubrSk
 		// 3avuTt1i9bZtlmYJlAdrb3q6D0mO6AeVjDRyZgbJhkKc
 
-		return wework.media.download(media_id);		
+		return wework.media.downloadMedia(media_id);		
 	}
 	
 	/**

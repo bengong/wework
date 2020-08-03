@@ -32,7 +32,7 @@ public class MenuMethods extends AbstractMethods {
 	 * @param agentid
 	 * @return
 	 */
-	public Object get(String agentid) {
+	public Object getmenu(String agentid) {
 		return get(String.format("/agent/get?access_token=%s&agentid=%s", gettoken(), agentid));
 	}
 	

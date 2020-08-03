@@ -58,7 +58,7 @@ public class TagMethods extends AbstractMethods {
 	 * @param tagid
 	 * @return
 	 */
-	public Object get(String tagid) {
+	public Object gettag(String tagid) {
 		return get(String.format("/tag/get?access_token=%s&tagid=%s", gettoken(), tagid));
 	}
 	

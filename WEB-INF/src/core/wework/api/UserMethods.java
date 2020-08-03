@@ -69,7 +69,7 @@ public class UserMethods  extends AbstractMethods {
 	 * @param userid
 	 * @return
 	 */
-	public Object get(String userid) {
+	public Object getuserinfo(String userid) {
 		return get(String.format("/user/get?access_token=%s&userid=%s", gettoken(), userid));
 	}
 	
@@ -156,5 +156,26 @@ public class UserMethods  extends AbstractMethods {
 		
 		Object result = post(String.format("/user/get_active_stat?access_token=%s&userid=%s", gettoken()), userid);
 		return (String)Mapl.cell(result, "openid");
+	}
+	
+	/**
+	 * 获取访问用户身份
+	 * 
+	 * 该接口用于根据code获取成员信息
+	 * 
+	 * @param code
+	 * @return
+	 */
+	public Object getuserinfo(String agentid, String code) {
+		Object result = get(String.format("/user/getuserinfo?access_token=%s&userid=%s", gettoken(agentid), code));
+		
+//		{
+//		   "errcode": 0,
+//		   "errmsg": "ok",
+//		   "UserId":"USERID",// 成员UserID。若需要获得用户详情信息，可调用通讯录接口：读取成员。如果是互联企业，则返回的UserId格式如：CorpId/userid
+//		   "DeviceId":"DEVICEID" // 手机设备号(由企业微信在安装时随机生成，删除重装会改变，升级不受影响)
+//		}
+		
+		return (String)Mapl.cell(result, "UserId");
 	}
 }

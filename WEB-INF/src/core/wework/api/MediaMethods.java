@@ -67,7 +67,7 @@ public class MediaMethods extends AbstractMethods {
 	 * @param media_id 媒体文件id, 见<a href="https://work.weixin.qq.com/api/doc/90000/90135/90253">上传临时素材</a>
 	 * @return
 	 */
-	public InputStream download(String media_id) {
+	public InputStream downloadMedia(String media_id) {
 		String url =  String.format("/media/get?access_token=%s&media_id=%s", gettoken(), media_id);		
 		return download(url);
 	}

@@ -39,8 +39,13 @@ public class ExternalContactMethods  extends AbstractMethods {
 		return post(String.format("/externalcontact/remark?access_token=%s", gettoken()), data);
 	}
 	
-	
-	public Object get(String external_userid) {
+	/**
+	 * 获取详情。
+	 * 
+	 * @param external_userid
+	 * @return
+	 */
+	public Object getinfo(String external_userid) {
 		return get(String.format("/externalcontact/get?access_token=%s&external_userid=%s", gettoken(), external_userid));
 	}
 	
