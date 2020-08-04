@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href =${basic} />
+<base href ="${basic}" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>PFM內部管理系統</title>
@@ -19,7 +19,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">主页</a>
+        <a href="index3.html" class="nav-link">主页 ${basic}</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">联系</a>
