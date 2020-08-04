@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href =${basic} />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<base href="${basic}" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
 </head>
 <body class="hold-transition login-page">
-	${basic}
 	<div class="login-box">
 	  <div class="card">
 	    <div id="wx_reg" class="card-body login-card-body">

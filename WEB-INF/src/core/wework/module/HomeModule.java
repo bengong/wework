@@ -46,7 +46,7 @@ public class HomeModule {
 			return null; // 返回null, 则代表走默认视图
 		} catch (BusinessException e) {
 			log.error(e);			
-			return "->:/auth/login";
+			return "->:/home/login";
 		}
 	}
 
@@ -61,11 +61,11 @@ public class HomeModule {
 	@Ok("jsp:/home/login")
 	public Object login(ViewModel model) throws UnsupportedEncodingException {
 		Context context = Lang.context();
-		context.set("basic", "../");
+		context.set("basic", "./");
 		String corpid = config.corpid;
 		String agentid = "1000002";
-		String redirect_uri = URLEncoder.encode("http://macauzone.org/wework/auth/", "UTF-8");		
-		String href = URLEncoder.encode("http://macauzone.org/wework/login.css", "UTF-8");
+		String redirect_uri = URLEncoder.encode("http://macauzone.org/wework/home/", "UTF-8");		
+		String href = URLEncoder.encode("http://macauzone.org/wework/css/login.css", "UTF-8");
 		
 		context.set("appid", corpid);
 		context.set("agentid", agentid);

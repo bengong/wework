@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href =${basic} />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>PFM內部管理系統</title>
