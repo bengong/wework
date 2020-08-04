@@ -14,6 +14,9 @@ import wework.util.BusinessException;
 import wework.util.NutPostman;
 import wework.util.Postman;
 
+/**
+ * 公共接口基础类。
+ */
 public abstract class AbstractMethods {
 	@Inject
 	public Config config;

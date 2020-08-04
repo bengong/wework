@@ -1,8 +1,11 @@
 package wework.api;
 
+import org.nutz.ioc.loader.annotation.IocBean;
+
 /**
  * 日程。
  */
+@IocBean(name="schedule")
 public class ScheduleMethods extends AbstractMethods {
 
 	/**

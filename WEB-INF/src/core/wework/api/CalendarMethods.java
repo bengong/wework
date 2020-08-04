@@ -1,35 +1,21 @@
 package wework.api;
 
+import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.mapl.Mapl;
+
 /**
  * 日历。
  */
+@IocBean(name="calendar")
 public class CalendarMethods extends AbstractMethods {
 
 	/**
 	 * 添加。
 	 * 
 	 * @param data
-	 * @return
+	 * @return cal_id
 	 */
 	public Object add(Object data) {
-//		请求参数
-//		{
-//		    "calendar" : {
-//		        "organizer" : "userid1",
-//		        "summary" : "test_summary",
-//		        "color" : "#FF3030",
-//		        "description" : "test_describe",
-//		        "shares" : [
-//		            {
-//		                "userid" : "userid2"
-//		            },
-//		            {
-//		                "userid" : "userid3"
-//		            }
-//		        ]
-//		    }
-//		}
-		
 //		返回值。
 //		{ 
 //		    "errcode": 0,
@@ -37,7 +23,8 @@ public class CalendarMethods extends AbstractMethods {
 //		    "cal_id":"wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA"
 //		}
 		
-		return post(String.format("/oa/calendar/add?access_token=%s", gettoken()), data);
+		Object result = post(String.format("/oa/calendar/add?access_token=%s", gettoken()), data);
+		return Mapl.cell(result, "cal_id");
 	}
 	
 	public Object update(Object data) {

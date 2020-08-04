@@ -1,8 +1,11 @@
 package wework.api;
 
+import org.nutz.ioc.loader.annotation.IocBean;
+
 /**
  * 直播。
  */
+@IocBean(name="living")
 public class LivingMethods extends AbstractMethods {
 
 	/**

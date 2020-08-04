@@ -2,9 +2,12 @@ package wework.module;
 
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.lang.Lang;
+import org.nutz.lang.util.Context;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Ok;
 
 import wework.Wework;
 
@@ -17,16 +20,21 @@ public class AuthModule {
 	Log log = Logs.get();
 	
 	@At("/")
+	@Ok("jsp:/demo/index")
 	public Object home(String code, String state) {
-		
-		log.info(code);
-		log.info(state);
+		Context context = Lang.context();
 		
 		String agentid = "1000002";
-		Object userid =  wework.user.getuserinfo(agentid, code);
-		log.info(userid);
+		Object userid = null;
+		try {
+			userid = wework.user.getuserinfo(agentid, code);
+		} catch (Exception e) {
+			log.error(e);
+		}
 		
-		return userid;
+		context.set("userid", userid);
+		
+		return context;
 	}
 
 }

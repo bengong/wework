@@ -8,7 +8,7 @@ import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 
 /**
- * 
+ * 标签。
  */
 @IocBean(name="tag")
 public class TagMethods extends AbstractMethods {

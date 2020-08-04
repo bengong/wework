@@ -1,8 +1,11 @@
 package wework.api;
 
+import org.nutz.ioc.loader.annotation.IocBean;
+
 /**
  * 会议室。
  */
+@IocBean(name="meetingroom")
 public class MeetingroomMethods extends AbstractMethods {
 
 	/**
