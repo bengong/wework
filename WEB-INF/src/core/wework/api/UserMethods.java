@@ -167,8 +167,6 @@ public class UserMethods  extends AbstractMethods {
 	 * @return
 	 */
 	public Object getuserinfo(String agentid, String code) {
-		Object result = get(String.format("/user/getuserinfo?access_token=%s&code=%s", gettoken(agentid), code));
-		
 //		{
 //		   "errcode": 0,
 //		   "errmsg": "ok",
@@ -176,6 +174,6 @@ public class UserMethods  extends AbstractMethods {
 //		   "DeviceId":"DEVICEID" // 手机设备号(由企业微信在安装时随机生成，删除重装会改变，升级不受影响)
 //		}
 		
-		return (String)Mapl.cell(result, "UserId");
+		return get(String.format("/user/getuserinfo?access_token=%s&code=%s", gettoken(agentid), code));
 	}
 }

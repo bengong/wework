@@ -89,13 +89,12 @@ public class NutPostman implements Postman {
     	log.info(Json.toJson(response.getHeader()));    	
     	
     	Object result = Json.fromJson(content);
-    	
-    	
+    	    	
     	if(result != null) {
     		Integer errcode =  (Integer)Mapl.cell(result, "errcode");
     		String errmsg =  (String)Mapl.cell(result, "errmsg");
     		if(errcode != 0) {
-    			throw new BusinessException(errmsg);
+    			throw new BusinessException(errcode+" - "+errmsg, result);
     		}
     	}
     	
