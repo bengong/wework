@@ -4,23 +4,22 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.nutz.ioc.Ioc;
 import org.nutz.mvc.Mvcs;
 
 import wework.domain.Role;
 import wework.domain.User;
+import wework.domain.UsernameTicketToken;
 import wework.service.RoleService;
 import wework.service.UserService;
 
-public class ServerRealm extends AuthorizingRealm {
+public class WeworkRealm extends AuthorizingRealm {
 
 	private UserService userService;
 	private RoleService roleService;
@@ -45,12 +44,12 @@ public class ServerRealm extends AuthorizingRealm {
 	 * 认证回调函数,登录时调用.
 	 */
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+		UsernameTicketToken token = (UsernameTicketToken) authcToken;
 		User user = getUserService().fetchByNameOrEmail(token.getUsername());
 		if (user != null) {
-			SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.password, getName());
-			ByteSource salt = ByteSource.Util.bytes(user.salt);
-			info.setCredentialsSalt(salt);
+			SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.ticket, getName());
+			// ByteSource salt = ByteSource.Util.bytes(user.salt);
+			// info.setCredentialsSalt(salt);
 			return info;
 		} else {
 			return null;

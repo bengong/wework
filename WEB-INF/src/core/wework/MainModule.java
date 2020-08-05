@@ -1,5 +1,7 @@
 package wework;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
@@ -18,6 +20,8 @@ import org.nutz.mvc.annotation.Views;
 import org.nutz.mvc.ioc.provider.ComboIocProvider;
 import org.nutz.mvc.view.DefaultViewMaker;
 
+import wework.domain.UsernameTicketToken;
+import wework.service.UserService;
 import wework.util.BusinessException;
 
 /**
@@ -34,6 +38,8 @@ import wework.util.BusinessException;
 public class MainModule {
 	@Inject
 	Wework wework;
+	@Inject
+	UserService userService;
 	
 	Log log = Logs.get();
 	
@@ -41,18 +47,38 @@ public class MainModule {
 	@Ok("re")
 	public Object home(String code, String state, ViewModel model) {
 		String agentid = "1000002";
-		Object userinfo = null;
-		
-		try {
-			userinfo = wework.user.getuserinfo(agentid, code);
-			if(!Lang.isEmpty(userinfo)) {
-				model.setv("userid", Mapl.cell(userinfo, "UserId"));
-				model.setv("deviceid", Mapl.cell(userinfo, "DeviceId"));
+		log.infof("code = %s", code);
+
+		String ticket = code;
+		Subject subject = SecurityUtils.getSubject();
+		// code為空，則判斷是否已登錄過。如果出錯，則跳轉顯示企業微信二維碼界面。
+		if(code == null || code.trim().equals("")) {
+			// 如发现已登录，则登记地址，并返回。
+			if(subject.isAuthenticated()) {
+				ticket = (String)subject.getSession().getAttribute("ticket");
+				log.infof("ticket = %s", ticket);				
+				return "->:/home"; // 返回null, 则代表走默认视图
 			}
-			return "->:/home"; // 返回null, 则代表走默认视图
-		} catch (BusinessException e) {
-			log.error(e);			
-			return "->:/home/login";
+		} else {
+			try {
+				Object userinfo = wework.user.getuserinfo(agentid, code);
+				if(!Lang.isEmpty(userinfo)) {
+					String userid = (String)Mapl.cell(userinfo, "UserId");
+					log.infof("userid = %s", userid);
+					UsernameTicketToken token = new UsernameTicketToken(userid, ticket);
+				    token.setRememberMe(true);
+			        // 更新票根。
+			       userService.updateTicket(userid, ticket);
+			    	
+			        subject.login(token);	        
+			        subject.getSession().setAttribute("ticket", ticket);
+				}
+				return "->:/home"; // 返回null, 则代表走默认视图
+			} catch (BusinessException e) {
+				log.error(e);			
+			}
 		}
-	}	
+		
+		return "->:/home/login";
+	}
 }
