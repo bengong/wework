@@ -31,6 +31,7 @@ import com.sun.net.ssl.X509TrustManager;
  * 
  * @author Josef Cacek
  */
+@SuppressWarnings("deprecation")
 public class TrustEveryoneManager implements X509TrustManager {
 
 	private static final X509Certificate[] EMPTY_ACCEPTED_ISSUERS = new X509Certificate[0];

@@ -1,20 +1,13 @@
 package wework.module;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.jsoup.nodes.Document;
-import org.jsoup.parser.Parser;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.lang.Dumps.HTTP;
-import org.nutz.lang.random.StringGenerator;
 import org.nutz.lang.util.NutMap;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.GET;
-import org.nutz.mvc.annotation.POST;
 
 import wework.Wework;
 
