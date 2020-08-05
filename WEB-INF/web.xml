@@ -6,6 +6,10 @@
 	<display-name>Wework Open API</display-name>
 
 	<listener>
+		<listener-class>wework.DatabaseListener</listener-class>
+	</listener>
+
+	<listener>
 		<display-name>shiro 环境加载监听器</display-name>
 		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
 	</listener>
