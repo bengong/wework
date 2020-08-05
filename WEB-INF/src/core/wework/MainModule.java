@@ -29,7 +29,7 @@ import wework.util.BusinessException;
  */
 @Modules(scanPackage = true)
 @Views({ DefaultViewMaker.class})
-@IocBy(type = ComboIocProvider.class, args = {"*org.nutz.ioc.loader.json.JsonLoader", "core.js", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "wework"})
+@IocBy(type = ComboIocProvider.class, args = {"*org.nutz.ioc.loader.json.JsonLoader", "core.js", "dao.js", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "wework"})
 @SetupBy(DefaultSetup.class)
 @Ok("raw")
 @Fail("raw")
