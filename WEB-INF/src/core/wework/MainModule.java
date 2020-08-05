@@ -45,7 +45,7 @@ public class MainModule {
 	
 	@At("/")
 	@Ok("re")
-	public Object home(String code, String state, ViewModel model) {
+	public Object index(String code, String state, ViewModel model) {
 		String agentid = "1000002";		
 		log.infof("code = %s", code);
 
