@@ -43,9 +43,6 @@ public class MainModule {
 		String agentid = "1000002";
 		Object userinfo = null;
 		
-		model.setv("basic", "./");
-		model.setv("code", code);
-		model.setv("state", state);
 		try {
 			userinfo = wework.user.getuserinfo(agentid, code);
 			if(!Lang.isEmpty(userinfo)) {

@@ -14,10 +14,9 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.GET;
 import org.nutz.mvc.annotation.POST;
 
-import com.qq.weixin.mp.aes.WXBizMsgCrypt;
-
 import wework.Wework;
 import wework.domain.Config;
+import wework.util.WXBizMsgCrypt;
 
 /**
  * 回调服务。

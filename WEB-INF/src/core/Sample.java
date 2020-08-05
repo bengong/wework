@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.qq.weixin.mp.aes.WXBizMsgCrypt;
+import wework.util.WXBizMsgCrypt;
 
 public class Sample {
 
