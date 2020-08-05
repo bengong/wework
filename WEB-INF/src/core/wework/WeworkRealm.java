@@ -4,6 +4,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cache.Cache;
@@ -24,6 +25,15 @@ public class WeworkRealm extends AuthorizingRealm {
 	private UserService userService;
 	private RoleService roleService;
 
+	public WeworkRealm() {
+		super();
+		
+		this.setAuthenticationTokenClass(UsernameTicketToken.class);
+		this.setCredentialsMatcher(new SimpleCredentialsMatcher());
+		// <property name="storedCredentialsHexEncoded" value="true"/>
+		
+	}
+	
 	private UserService getUserService() {
 		if (userService == null) {
 			Ioc ioc = Mvcs.getIoc();

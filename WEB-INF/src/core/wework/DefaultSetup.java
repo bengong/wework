@@ -2,6 +2,7 @@ package wework;
 
 import org.nutz.dao.Dao;
 import org.nutz.dao.util.Daos;
+import org.nutz.integration.shiro.NutShiro;
 import org.nutz.ioc.Ioc;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
@@ -17,6 +18,11 @@ public class DefaultSetup implements Setup {
 		System.setProperty("file.encoding", "UTF-8");
 		// 设置默认文档分割格式 /
 		System.setProperty("file.separator", "/");
+		
+		// 设置默认登录链接地址
+		NutShiro.DefaultLoginURL = "/home/login";
+		// 设置未授权页面
+		NutShiro.DefaultNoAuthURL = "/noauth";
 		
 		Ioc ioc = config.getIoc();
 		Dao dao = ioc.get(Dao.class);

@@ -81,4 +81,9 @@ public class MainModule {
 		
 		return "->:/home/login";
 	}
+	
+	@At("/noauth")
+	public Object noauth() {
+		return "未授權";
+	}
 }
