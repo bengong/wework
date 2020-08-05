@@ -70,7 +70,7 @@ public class MainModule {
 			        // 更新票根。
 			       userService.updateTicket(userid, ticket);
 			    	
-			        subject.login(token);	        
+			        subject.login(token);
 			        subject.getSession().setAttribute("ticket", ticket);
 				}
 				return "->:/home"; // 返回null, 则代表走默认视图

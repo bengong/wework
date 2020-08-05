@@ -5,9 +5,6 @@ import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
@@ -73,26 +70,5 @@ public class HomeModule {
 		context.set("href", href);
 		
 		return context;
-	}
-	
-	@At("/test/none")
-	public Object none() {
-		return "none";
-	}
-	
-	@At("/test/none")
-	@RequiresAuthentication
-	public Object required() {
-		Subject subject = SecurityUtils.getSubject();
-		// code為空，則判斷是否已登錄過。如果出錯，則跳轉顯示企業微信二維碼界面。
-		// 如发现已登录，则登记地址，并返回。
-		String ticket = "";
-		if(subject.isAuthenticated()) {
-			ticket = (String)subject.getSession().getAttribute("ticket");
-			log.infof("ticket = %s", ticket);				
-			return "->:/home"; // 返回null, 则代表走默认视图
-		}
-		
-		return "必须为已登录"+ticket;
 	}
 }
