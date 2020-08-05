@@ -49,4 +49,12 @@ public class Result {
 		result.message = message;
 		return result;
 	}
+	
+	/**
+	 * 判斷結果是否正常。
+	 * @return
+	 */
+	public boolean isOK() {
+		return ("success").equalsIgnoreCase(status);
+	}
 }

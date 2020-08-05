@@ -5,6 +5,7 @@ import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
+import org.nutz.lang.random.StringGenerator;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mapl.Mapl;
@@ -23,6 +24,7 @@ import org.nutz.mvc.view.DefaultViewMaker;
 import wework.domain.UsernameTicketToken;
 import wework.service.UserService;
 import wework.util.BusinessException;
+import wework.util.Result;
 
 /**
  * 主模块。
@@ -57,7 +59,7 @@ public class MainModule {
 			if(subject.isAuthenticated()) {
 				ticket = (String)subject.getSession().getAttribute("ticket");
 				log.infof("ticket = %s", ticket);				
-				return "->:/home"; // 返回null, 则代表走默认视图
+				return ">>:/home"; // 返回null, 则代表走默认视图
 			}
 		} else {
 			try {
@@ -73,13 +75,36 @@ public class MainModule {
 			        subject.login(token);
 			        subject.getSession().setAttribute("ticket", ticket);
 				}
-				return "->:/home"; // 返回null, 则代表走默认视图
+				return ">>:/home"; // 返回null, 则代表走默认视图
 			} catch (BusinessException e) {
 				log.error(e);			
 			}
 		}
 		
 		return "->:/home/login";
+	}
+	
+	/**
+	 * demo 演示以某一角色登錄系統。
+	 * 
+	 * @param userid 用戶標識。
+	 * @return
+	 */
+	@At("/as/?")
+	@Ok("re")
+	public Object as(String userid) {
+		String ticket = new StringGenerator(19, 19).next();
+		Subject subject = SecurityUtils.getSubject();
+		log.infof("userid = %s", userid);
+		UsernameTicketToken token = new UsernameTicketToken(userid, ticket);
+	    token.setRememberMe(true);
+        // 更新票根。
+	    Result result = userService.updateTicket(userid, ticket);
+	    if(result != null && result.isOK()) {
+	    	subject.login(token);
+	    	subject.getSession().setAttribute("ticket", ticket);
+	    }
+        return ">>:/home";
 	}
 	
 	@At("/noauth")
