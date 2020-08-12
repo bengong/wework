@@ -30,8 +30,6 @@ public class WeworkRealm extends AuthorizingRealm {
 		
 		this.setAuthenticationTokenClass(UsernameTicketToken.class);
 		this.setCredentialsMatcher(new SimpleCredentialsMatcher());
-		// <property name="storedCredentialsHexEncoded" value="true"/>
-		
 	}
 	
 	private UserService getUserService() {

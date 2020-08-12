@@ -6,6 +6,7 @@ import org.nutz.integration.shiro.NutShiro;
 import org.nutz.ioc.Ioc;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.log.impl.Log4jLogAdapter;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
@@ -13,7 +14,8 @@ public class DefaultSetup implements Setup {
 	Log log = Logs.get();
 	
 	@Override
-	public void init(final NutConfig config) {		
+	public void init(final NutConfig config) {
+		log.info("启动 Setup");
 		// 设置默认文档编码方式 UTF-8
 		System.setProperty("file.encoding", "UTF-8");
 		// 设置默认文档分割格式 /
@@ -23,6 +25,9 @@ public class DefaultSetup implements Setup {
 		NutShiro.DefaultLoginURL = "/home/login";
 		// 设置未授权页面
 		NutShiro.DefaultNoAuthURL = "/noauth";
+		
+		// 設置默認日誌加載器。
+		Logs.setAdapter(new Log4jLogAdapter());
 		
 		Ioc ioc = config.getIoc();
 		Dao dao = ioc.get(Dao.class);

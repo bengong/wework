@@ -13,6 +13,7 @@
 		<display-name>shiro 环境加载监听器</display-name>
 		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
 	</listener>
+	
 	<context-param>
 		<param-name>shiroEnvironmentClass</param-name>
 		<param-value>org.apache.shiro.web.env.IniWebEnvironment</param-value>
