@@ -86,7 +86,7 @@ public class NutPostman implements Postman {
     	    	
     	String content = response.getContent();
     	
-    	log.info(Json.toJson(response.getHeader()));    	
+    	log.info("\n"+Json.toJson(response.getHeader()));    	
     	
     	Object result = Json.fromJson(content);
     	    	
@@ -98,7 +98,7 @@ public class NutPostman implements Postman {
     		}
     	}
     	
-    	log.info(Json.toJson(result));
+    	log.info("\n"+Json.toJson(result));
     	return result;
     }
 
